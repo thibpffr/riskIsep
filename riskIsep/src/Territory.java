@@ -11,6 +11,7 @@ public class Territory {
 	
 	
 	public static boolean attackTerritoryCheck(Territory terOrigine, Territory terCible,int nGunsAttaquant, int nCavalryAttaquant,int nSoldiersAttaquant ){
+		// la fonction renvoie true si l'attaque est possible, 0 sinon
 		int nAttaque=nGunsAttaquant+nSoldiersAttaquant+nCavalryAttaquant;
 		int nPresent=terOrigine.getnCavalry()+terOrigine.getnGuns()+terOrigine.getnSoldiers();
 		// verifier que les territoires sont voisins
@@ -65,22 +66,89 @@ public class Territory {
 		return true;
 	}
 	
-	public static void territoryWins(){
-		// nsoldiers, cavaliers canons sont posés sur le nouveau territoire
+	public static boolean territoryWins(Territory terOrigine, Territory terCible,int nGunsRestants, int nCavalryRestants,int nSoldiersRestants){
+		// cette fonction renvoie true si le territoire a gagné sur l'autre et change le propriétaire du territoire dans ce cas
+		// sinon il renvoie false s'il reste des unités qui peuvent se défendre sur le territoire
+		
 		// regarder s'il reste ou non des unités sur le ter cible 
-		// si oui -> return false
-		// sinon change of owner
-	}
-	public void isABorderTerritory(){
+			if ((terCible.getnCavalry()==0)&&(terCible.getnGuns()==0)&&(terCible.getnSoldiers()==0)){
+				// dans ce cas il ne reste plus aucune unité combattante sur le territoire
+				// le combat est donc gagné 
+				
+				// on change le player qui possede le territoire 
+				terCible.setPlayerWhoControlls(terOrigine.getPlayerWhoControlls());
+				
+				// on met les unités combattantes qui ont gagné sur le territoire cible
+				terCible.setnCavalry(nCavalryRestants);
+				terCible.setnGuns(nGunsRestants);
+				terCible.setnSoldiers(nSoldiersRestants);
+				
+				// ajouter le territoire dans la liste des territoires controlés par le joueur
+				removeControlledTerritory(terCible.getPlayerWhoControlls(),terCible);
+				addControlledTerritory(terOrigine.getPlayerWhoControlls(),terCible);
+				
+				return true;
+			}
+				
+			else{
+				// le combat n'est pas gagné, il reste des unités combattantes sur le territoire attaqué
+				return false;
+			}
+		}
+		
+		
+		
+	
+		
+	
+	
+	public boolean moveArmy(Territory terOrigine, Territory terCible,int nGuns, int nCavalry,int nSoldiers){
+		// cette fonction bouge des armées d'un territoire à un autre 
+		// si le déplacement est posssible, elle l'effectue et renvoie true, sinon elle renvoie false
+		
+		int nUnitesDeplacees=nGuns+nCavalry+nSoldiers;
+		int nUnitePresentes=terOrigine.getnGuns()+terOrigine.getnSoldiers()+terOrigine.getnCavalry();
+		
+		// on verifie que les deux territoires appartiennent au meme player
+		if (terOrigine.getPlayerWhoControlls()!=terCible.getPlayerWhoControlls()){
+			System.out.println("Les deux territoires n'appartiennent pas au meme joueur");
+			return false;
+		}
+		// on verifie que les territoires sont bien a coté
+		else if (!isABorderTerritory(terOrigine,terCible)){
+			System.out.println("Les deux territoires ne sont pas voisins");
+			return false;
+		}
+		
+		// on verifie que les unités qui doivent etre deplacees sont bien presentes sur le territoire origine
+		else if ((terOrigine.getnGuns()<nGuns)||(terOrigine.getnCavalry()<nCavalry)||(terOrigine.getnSoldiers()<nSoldiers)){
+			System.out.println("Le nombre d'unité à déplacer n'est pas cohérent par rapport au nombre d'unités présents sur le territoire Origine");
+			return false;
+			
+		}
+		// on verifie qu'il reste une unité sur le territoire origine avant d'effectuer le déplacement
+		else if (nUnitesDeplacees>=nUnitePresentes){
+			System.out.println("Il faut laisser une unité sur le territoire origine");
+			return false;
+		}
+		
+		else{
+			// dans ce cas on peut effectuer le deplacement
+			// ter Origine
+			terOrigine.setnGuns(terOrigine.getnGuns()-nGuns);
+			terOrigine.setnCavalry(terOrigine.getnCavalry()-nCavalry);
+			terOrigine.setnSoldiers(terOrigine.getnSoldiers()-nSoldiers);
+			
+			//terCible
+			terCible.setnCavalry(terCible.getnCavalry()+nCavalry);
+			terCible.setnGuns(terCible.getnGuns()+nGuns);
+			terCible.setnSoldiers(terCible.getnSoldiers()+nSoldiers);
+			
+			return true;
+		}
 		
 	}
 	
-	public void moveArmy(){
-		
-	}
-	public void territoryChangeOfOwner(){
-		
-	}
 	public void attackTerritory(){
 		
 	}
@@ -88,86 +156,7 @@ public class Territory {
 			
 	
 	
-	public void addABorderTerritory(Territory ter){
-	Territory T=this.borderTerritories;
-	while (T.next!=null){
-		T=T.next;
-	}
-	T.next=ter;
-	}
 	
-	public int Length(){
-		Territory T=this ;
-		int i=0;
-		while (T!=null){
-			i++;
-			T=T.next;
-		}
-		return i;
-	}
-	
-	
-	public Territory RemoveBorderTerritory(Territory ter){
-		Territory T=this;//ListeEntier RI = this;
-		Territory debutListe=T;//ListeEntier debutListe=RI;
-		if (debutListe==ter)
-			return T.next;
-		
-		int len=T.Length();//int len = RI.Longueur();
-		
-			for (int i=0;i<len-1;i++){
-				if (T.next==ter){
-					T.next=T.next.next;
-					return debutListe;
-				}
-				T=T.next;
-			}
-			
-			System.out.println("Le territoire demandé n'a pas pu être enlevé car il n'appartient pas a la liste");// cas ou on a pas trouvé ter
-			return debutListe;
-	}
-	
-	public void deplacerArmees(Territory terCible,int nSol,int nCal, int nGuns){
-		if((this.nSoldiers-nSol<0)&&(this.nCavalry-nCal<0)&&(this.nGuns-nGuns<0)){
-			System.out.println("Action impossible");
-		}
-		//il faut laisser au moins 1 unité armée sur chaque territoire
-		if (!this.isABorderTerritory(terCible))
-		{
-			//Errors102.displayErrors();
-		}
-		else{
-		terCible.setnSoldiers(terCible.getnSoldiers()+nSol);
-		this.setnSoldiers(this.getnSoldiers()-nSol);
-		terCible.setnCavalry (terCible.getnCavalry()+nCal);
-		this.setnCavalry(this.getnCavalry()-nCal);
-		terCible.setnGuns(terCible.getnGuns()+nGuns);
-		this.setnGuns(this.getnGuns()-nGuns);
-		}
-			
-	}
-	
-	public boolean territoryAttacksATerritory(Territory terCible){
-		if(!this.isABorderTerritory(terCible)){
-			//Error102.displayError();
-			return false;
-		}
-		else if (this.playerWhoControlls==terCible.playerWhoControlls){
-			//Error101.displayError();
-			return false;
-		}
-		else{
-			while (terOrigine.nCavalry!=0)
-		}
-	}
-	public void territoryChangeOfOwner(Player pWhoLose,Player pWhoWon){
-		// Cette fonction met le joueur gagnant comme propritaire du territoire et l'ajoute a la liste des 
-		//territoires controlés par le gagnant
-		// il enleve aussi le territoire de la liste des territoires controlés du perdant
-		pWhoLose.RemoveControlledTerritory( this);
-		this.setPlayerWhoControlls(pWhoWon);
-		pWhoWon.addAControlledTerritory(this);
-	}
 	public int getTerritoryNumber() {
 		return territoryNumber;
 	}
