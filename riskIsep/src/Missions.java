@@ -1,5 +1,7 @@
 package riskIsep;
 
+import java.util.Random;
+
 public class Missions 
 	// rajouter le numero du joueur si joueur a detruire
 // creer un lien entre mission et joueur
@@ -14,9 +16,15 @@ public class Missions
 	
 	
 public boolean isMissionSuceeded(Missions m,Player p){
-	
-	
-	
+		
+}
+
+public boolean missionDeletePlayer(Missions m, Player pAttaquant, Player pDefendant){
+	if (pDefendant.p.getControlledTerritories().length==0){
+		System.out.println("La mission du Player"+pAttaquant.getPlayerName()+" est reussie");
+		return true;
+	}
+	return false;
 }
 
 public boolean missionNbTerritories(Missions m,Player p){
@@ -30,7 +38,17 @@ public boolean missionNbTerritories(Missions m,Player p){
 	}
 	
 }
-
+public boolean missionTerritoriesAndRegions(Missions m,Player p){
+	int [] listeTer=p.getControlledTerritories();
+	int [] listeReg=p.getControlledRegions();
+	if((m.getNbTerritoriesControlled()<=listeTer.length)&&(m.getNbRegionControlled()<=listeReg.length)){
+		System.out.println("La mission du Player"+p.getPlayerName()+" est reussie");
+		return true;
+	
+	}
+	return false;
+	
+}
 public boolean mission2Armies(Missions m, Player p){
 	int nbTerControlesAvec2Armees=0;
 	int [] listeTer=p.getControlledTerritories();
@@ -52,21 +70,22 @@ public boolean mission2Armies(Missions m, Player p){
 	 return false;
 }
 
-public boolean missionDeletePlayer(Missions m, Player pAttaquant, Player pDefendant){
-	if (pDefendant.p.getControlledTerritories().length==0){
-		System.out.println("La mission du Player"+pAttaquant.getPlayerName()+" est reussie");
-		return true;
+
+public Missions giveAMission(int nbJoueurs,Missions[] tab){
+	int nb=0;
+	
+	Random rand = new Random(); 
+	
+	while (true){
+		nb = rand.nextInt(tab.length - 1);
+		if ((nbJoueurs>=tab[nb].getNbJoueurMinimum())&&(nbJoueurs>=tab[nb].getNbJoueurMax())){
+			return tab[nb];
+		}
 	}
-	return false;
 }
 
-public boolean missionTerritoriesAndRegions(Missions m,Player p){
-	int [] listeTer=p.getControlledTerritories();
-	int [] listeReg=p.getControlledRegions();
-	if((m.getNbTerritoriesControlled()<=listeTer.length)&&(m.getNbRegionControlled()<=listeReg.length)){
-		return true
-	
-}
+
+
 	
 
 public int getMissionNumber() {
