@@ -51,6 +51,7 @@ public class Territory {
 			
 		
 	}
+	
 	public static boolean isABorderTerritory(Territory terOrigine, Territory terCible){
 		int[] listeVoisins={};
 		int rep=0;

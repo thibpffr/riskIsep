@@ -1,8 +1,7 @@
-package riskIsep;
 
 import java.util.Random;
 
-public class Missions 
+public class Missions {
 	// rajouter le numero du joueur si joueur a detruire
 // creer un lien entre mission et joueur
 	private int missionNumber;
@@ -12,6 +11,7 @@ public class Missions
 	private int nbRegionControlled=0;
 	private String nameOfControlledRegion="";
 	private boolean mission2Armies;
+	public static Missions [] missionTab;
 
 	
 	
@@ -20,7 +20,7 @@ public boolean isMissionSuceeded(Missions m,Player p){
 }
 
 public boolean missionDeletePlayer(Missions m, Player pAttaquant, Player pDefendant){
-	if (pDefendant.p.getControlledTerritories().length==0){
+	if (pDefendant.getControlledTerritories().length==0){
 		System.out.println("La mission du Player"+pAttaquant.getPlayerName()+" est reussie");
 		return true;
 	}
@@ -71,7 +71,7 @@ public boolean mission2Armies(Missions m, Player p){
 }
 
 
-public Missions giveAMission(int nbJoueurs,Missions[] tab){
+public static Missions giveAMission(int nbJoueurs,Missions[] tab){
 	int nb=0;
 	
 	Random rand = new Random(); 
