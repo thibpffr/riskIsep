@@ -9,12 +9,54 @@ public class Player {
 	ArrayList<Integer> controlledRegions=new ArrayList<Integer>();
 
 
-	/*public String getPlayerName() {
-		return this.playerName;
+
+
+	public void addControlledTerritory(int territoryNumber) {
+		this.controlledTerritories.add(territoryNumber);
 	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;*/
+	public void removeControlledTerritory(int territoryNumber) {
+		this.controlledTerritories.remove(territoryNumber);
+	}
+
+	public void addControlledRegion(int regionNumber) {
+		this.controlledRegions.add(regionNumber);
+	}
+
+	public void removeControlledRegion(int regionNumber) {
+		this.controlledRegions.remove(regionNumber);
+	}
+	
+	public void addRenfort(Player player) {
+		int numberOfTroup=0;
+		numberOfTroup = player.controlledTerritories.size()/3;
+	}
+
+
+
+	//------------------- Initialisation ---------------------------------------
+	
+	
+	/*public void nouveauxSoldatsACeTour(){
+		// cette fonction compte le nombre de territoires et regions 
+		//controlés pour donner de nouveaux soldats au joueur
+		int length=this.controlledTerritories.Length();
+		int l2=this.controlledRegions.Length();
+		this.setnSoldiers(this.getnSoldiers()+(int)(Math.floor(length/3)));
+		this.setnSoldiers(this.getnSoldiers()+(int)(Math.floor(l2/2)));
+	}*/
+	//-------------------  Macro fonctionnalités JEU  -------------------------------------
+	
+	
+	
+	
+	//-------------------  Getters & Setters  ----------------------------------------
+	public int getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(int playerName) {
+		this.playerName = playerName;
 	}
 
 	public int getnSoldier() {
@@ -40,43 +82,6 @@ public class Player {
 	public void setnCanon(int nCanon) {
 		this.nCanon = nCanon;
 	}
-
-	public void addControlledTerritory(int territoryNumber) {
-		this.controlledTerritories.add(territoryNumber);
-	}
-
-	public void removeControlledTerritory(int territoryNumber) {
-		this.controlledTerritories.remove(territoryNumber);
-	}
-
-	public void addControlledRegion(int regionNumber) {
-		this.controlledRegions.add(regionNumber);
-	}
-
-	public void removeControlledRegion(int regionNumber) {
-		this.controlledRegions.remove(regionNumber);
-	}
-
-
-
-	//------------------- Initialisation ---------------------------------------
-	
-	
-	/*public void nouveauxSoldatsACeTour(){
-		// cette fonction compte le nombre de territoires et regions 
-		//controlés pour donner de nouveaux soldats au joueur
-		int length=this.controlledTerritories.Length();
-		int l2=this.controlledRegions.Length();
-		this.setnSoldiers(this.getnSoldiers()+(int)(Math.floor(length/3)));
-		this.setnSoldiers(this.getnSoldiers()+(int)(Math.floor(l2/2)));
-	}*/
-	//-------------------  Macro fonctionnalités JEU  -------------------------------------
-	
-	
-	
-	
-	//-------------------  Getters & Setters  ----------------------------------------
-
 	
 		
 	
