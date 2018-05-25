@@ -1,7 +1,7 @@
 
 public class Region {
 
-	private int number;
+	private int regionNumber;
 	private Region next;
 
 
@@ -13,5 +13,17 @@ public int Length(){
 		T=T.next;
 	}
 	return i;
+}
+
+public void addControlledRegion(Player player, Region regCible) {
+	player.controlledRegions.add(regCible.getRegionNumber());
+}
+
+public void removeControlledRegion(Player player, Region regCible) {
+	player.controlledRegions.remove(regCible.getRegionNumber());
+}
+
+public int getRegionNumber() {
+	return regionNumber;
 }
 }

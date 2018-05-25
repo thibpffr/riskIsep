@@ -5,22 +5,23 @@ public class Player {
 	private int nSoldier=0;
 	private int nCavalry=0;
 	private int nCanon=0;
-	ArrayList<Integer> controlledTerritories = new ArrayList<Integer>();
-	ArrayList<Integer> controlledRegions=new ArrayList<Integer>();
+	static ArrayList<Integer> controlledTerritories = new ArrayList<Integer>();
+	static ArrayList<Integer> controlledRegions=new ArrayList<Integer>();
 
 
 
 
+	public static boolean isControlledTerritory(int territoryNumber) {
+		for(int i : controlledTerritories) {	
+		if(i==territoryNumber){
+			return true;
+		}
+		}
+		return false;
+	}
+	
 	
 
-	public void addControlledRegion(int regionNumber) {
-		this.controlledRegions.add(regionNumber);
-	}
-
-	public void removeControlledRegion(int regionNumber) {
-		this.controlledRegions.remove(regionNumber);
-	}
-	
 	public void addRenfort(Player player) {
 		int numberOfTroup=0;
 		numberOfTroup = player.controlledTerritories.size()/3;
