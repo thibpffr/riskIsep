@@ -22,7 +22,9 @@ public class Interface {
 		cliqueTerritoires(sourisX,sourisY);
 	}
 	}
-	
+	/*interf = new Interface(1080,720);
+	interf.ecranCarte();
+	Interface.positionSouris();*/
 	
 	public static boolean clique()
 	{
@@ -33,7 +35,6 @@ public class Interface {
 	{
 			if((sourisX > 0.34 && sourisX < 0.38) && (sourisY > 0.77 && sourisY < 0.82))//Island
 			{
-				
 				System.out.println("ceci est le territoire 14");
 			}
 			else if((sourisX > 0.4 && sourisX < 0.47) && (sourisY > 0.74 && sourisY < 0.87))//Scandinavie
