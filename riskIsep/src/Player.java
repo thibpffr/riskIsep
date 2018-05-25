@@ -11,13 +11,7 @@ public class Player {
 
 
 
-	public void addControlledTerritory(int territoryNumber) {
-		this.controlledTerritories.add(territoryNumber);
-	}
-
-	public void removeControlledTerritory(int territoryNumber) {
-		this.controlledTerritories.remove(territoryNumber);
-	}
+	
 
 	public void addControlledRegion(int regionNumber) {
 		this.controlledRegions.add(regionNumber);

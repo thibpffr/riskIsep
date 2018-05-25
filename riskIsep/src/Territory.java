@@ -9,7 +9,15 @@ public class Territory {
 	private int nCavalry=0;
 	private int nGuns=0;
 	
-	
+	// Methodes
+	public static void addControlledTerritory(Player player,Territory terCible) {
+		player.controlledTerritories.add(terCible.getTerritoryNumber());
+	}
+
+	public static void removeControlledTerritory(Player player,Territory terCible) {
+		player.controlledTerritories.remove(terCible.getTerritoryNumber());
+	}
+
 	public static boolean attackTerritoryCheck(Territory terOrigine, Territory terCible,int nGunsAttaquant, int nCavalryAttaquant,int nSoldiersAttaquant ){
 		// la fonction renvoie true si l'attaque est possible, 0 sinon
 		int nAttaque=nGunsAttaquant+nSoldiersAttaquant+nCavalryAttaquant;
@@ -156,7 +164,7 @@ public class Territory {
 	
 			
 	
-	
+	// Getters & Setters
 	
 	public int getTerritoryNumber() {
 		return territoryNumber;
@@ -200,7 +208,6 @@ public class Territory {
 	public void setnGuns(int nGuns) {
 		this.nGuns = nGuns;
 	}
-	
 	
 
 

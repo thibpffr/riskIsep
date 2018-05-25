@@ -75,7 +75,7 @@ public class Interface {
 			{
 				System.out.println("ceci est le territoire 39");
 			}
-			else if((sourisX > 0.43 && sourisX < 0.49) && (sourisY > 0.13 && sourisY < 0.17))//Afrique du Sud
+			else if((sourisX > 0.43 && sourisX < 0.49) && (sourisY > 0.05 && sourisY < 0.17))//Afrique du Sud
 			{
 				System.out.println("ceci est le territoire 38");
 			}
