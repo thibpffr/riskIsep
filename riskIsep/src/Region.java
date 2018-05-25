@@ -5,7 +5,11 @@ public class Region {
 	private int numberOfTerritory;
 	private int[] territoryInRegion;
 
-
+	public Region(int regionNumber, int numberOfTerritory, int[] territoryInRegion) {
+		this.regionNumber = regionNumber;
+		this.numberOfTerritory = numberOfTerritory;
+		this.territoryInRegion = territoryInRegion;
+	}
 
 
 /*public int Length(){
@@ -23,6 +27,8 @@ public class Region {
 public void addControlledRegion(Player player, Region regCible) {
 	player.controlledRegions.add(regCible.getRegionNumber());
 }
+
+
 
 public void removeControlledRegion(Player player, Region regCible) {
 	player.controlledRegions.remove(regCible.getRegionNumber());

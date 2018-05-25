@@ -17,4 +17,6 @@ public class Inclassable {
 		int valeur = 2+r.nextInt(7);
 		return valeur;
 	}
+	
+	
 }
