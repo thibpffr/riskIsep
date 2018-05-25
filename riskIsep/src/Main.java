@@ -11,10 +11,7 @@ public class Main {
 	
 		 
 	public static void main(String[] args) {
-		
-		
-		
-		
+
 		interfNbJoueurs=new Interface(500,500);
 		interfNbJoueurs.ecranNbJoueurs();
 		int nbJoueurs;
@@ -149,3 +146,4 @@ public class Main {
 		Region Africa = new Region(6,6,listAfricaTerritory);
 	}
 }
+
