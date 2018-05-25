@@ -80,6 +80,10 @@ public class Player {
 	public ArrayList getControlledTerritories() {
 		return controlledTerritories;
 	}
+	
+	public ArrayList getControlledRegions() {
+		return controlledRegions;
+	}
 		
 	
 }
