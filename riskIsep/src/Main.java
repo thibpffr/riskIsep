@@ -13,28 +13,19 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-		
-		
+		// choix du nombre de joueurs qui jouent
 		interfNbJoueurs=new Interface(500,500);
 		interfNbJoueurs.ecranNbJoueurs();
-		int nbJoueurs;
+		int nbJoueurs=0;
 		nbJoueurs=Interface.posThib();
+		System.out.println(nbJoueurs);
 		
-		
-		
-		interfMap = new Interface(1080,720);
-		interfMap.ecranCarte();
-		
-		Interface.positionSouris();
-		
-		
+		// tableau des jouerus
 		ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
-		// demander de rentrer le nombre de joueurs qui jouent
 		
 		// creation des différents joueurs 
 		for (int i=0;i<nbJoueurs;i++){
 			Missions m = Missions.giveAMission(nbJoueurs, Missions.missionTab);
-			
 			
 			Player p= new Player ();
 			
@@ -42,6 +33,11 @@ public class Main {
 			
 		}
 		
+		// creation de l'interface graphique
+		interfMap = new Interface(1080,720);
+		interfMap.ecranCarte();
+		
+		Interface.positionSouris();
 		// phase d'initialisation : les joueurs posent leurs soldats sur des territoires tour à tour
 		
 		
@@ -51,7 +47,7 @@ public class Main {
 		
 		
 		// phase réelle de jeu qui ne s'arrete pas tant que aucun joueur n'a pas gagné
-		
+		/*
 		
 		boolean victoire =false;
 		int choix ;
@@ -147,5 +143,5 @@ public class Main {
 		Region Asia = new Region(4,12,listAsiaTerritory);
 		Region Oceania = new Region(5,4,listOceaniaTerritory);
 		Region Africa = new Region(6,6,listAfricaTerritory);
-	}
-}
+	}*/
+}}
