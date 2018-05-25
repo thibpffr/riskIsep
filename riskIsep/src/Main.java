@@ -20,8 +20,21 @@ public class Main {
 		nbJoueurs=Interface.posThib();
 		System.out.println(nbJoueurs);
 		
+<<<<<<< HEAD
 		// tableau des jouerus
 		ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
+=======
+		
+		
+		interfMap = new Interface(1080,720);
+		interfMap.ecranCarte();
+		
+		Interface.positionSouris();
+		
+		
+		/*ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
+		// demander de rentrer le nombre de joueurs qui jouent
+>>>>>>> branch 'master' of https://github.com/thibpffr/riskIsep.git
 		
 		// creation des différents joueurs 
 		for (int i=0;i<nbJoueurs;i++){
@@ -127,7 +140,7 @@ public class Main {
 			}
 	
 		}
-	}
+	}*/
 	
 	
 	public static void creationJeu() {

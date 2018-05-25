@@ -5,7 +5,7 @@ public class Interface {
 		StdDraw.setXscale(0,xMax);
 		StdDraw.setYscale(0,yMax);
 }
-	public void ecranUnit() {
+	public static void ecranUnit() {
 	StdDraw.picture(0.5, 0.5, "image/riskUnit.jpg");
 }
 	
@@ -69,17 +69,57 @@ public class Interface {
 	
 	public static void positionSouris() {
 	while(!clique()) {
-		//System.out.println("x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
+		System.out.println("x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
+		}
+	}
+	public static void unitChoice() {
+		ecranUnit();
+		while(!clique()) {
+		double sourisX = StdDraw.mouseX();
+		double sourisY = StdDraw.mouseY();
+		cliqueUnit(sourisX,sourisY);
+		}
+	}
+	public static void territoryChoice() {
+		while(!clique()) {
 		double sourisX = StdDraw.mouseX();
 		double sourisY = StdDraw.mouseY();
 		cliqueTerritoires(sourisX,sourisY);
+		}
 	}
+	
+	public static boolean numberOfClique(int number) {
+		int i=0;
+		while(i<number) {
+			if(clique()==true) {
+				i++;
+			}
+		}
+		return false;
 	}
 	
 	public static boolean clique()
 	{
 		return StdDraw.isMousePressed();
 	}
+	
+	public static void cliqueUnit(double sourisX, double sourisY) {
+		if((sourisX > 0.22 && sourisX < 0.40) && (sourisY > 0.35 && sourisY < 0.65))//Cavalier
+		{
+			System.out.println("ceci est un cavalier");
+		}
+		else if((sourisX > 0.44 && sourisX < 0.62) && (sourisY > 0.35 && sourisY < 0.65))//Canon
+		{
+			System.out.println("ceci est un canon");
+		}
+		else if((sourisX > 0.67 && sourisX < 0.75) && (sourisY > 0.35 && sourisY < 0.65))//Soldat
+		{
+			System.out.println("ceci est un soldat");
+		}
+		else {
+			System.out.println("ceci n'est pas une troupe");
+		}
+		}
 	
 	 public static void cliqueTerritoires(double sourisX, double sourisY)
 	{
