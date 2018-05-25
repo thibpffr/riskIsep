@@ -32,9 +32,9 @@ public class Main {
 		Interface.positionSouris();
 		
 		
-		/*ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
+		ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
 		// demander de rentrer le nombre de joueurs qui jouent
->>>>>>> branch 'master' of https://github.com/thibpffr/riskIsep.git
+
 		
 		// creation des différents joueurs 
 		for (int i=0;i<nbJoueurs;i++){
@@ -60,7 +60,7 @@ public class Main {
 		
 		
 		// phase réelle de jeu qui ne s'arrete pas tant que aucun joueur n'a pas gagné
-		/*
+		
 		
 		boolean victoire =false;
 		int choix ;
@@ -140,7 +140,7 @@ public class Main {
 			}
 	
 		}
-	}*/
+	}
 	
 	
 	public static void creationJeu() {
@@ -156,5 +156,5 @@ public class Main {
 		Region Asia = new Region(4,12,listAsiaTerritory);
 		Region Oceania = new Region(5,4,listOceaniaTerritory);
 		Region Africa = new Region(6,6,listAfricaTerritory);
-	}*/
-}}
+	}
+}
