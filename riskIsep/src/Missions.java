@@ -51,13 +51,13 @@ public boolean missionTerritoriesAndRegions(Missions m,Player p){
 }
 public boolean mission2Armies(Missions m, Player p){
 	int nbTerControlesAvec2Armees=0;
-	int [] listeTer=p.getControlledTerritories();
+	Territory [] listeTer=p.getControlledTerritories();
 	Territory ter;
 	int unites=0;
 	 for (int i=0;i<listeTer.length;i++){
 		 // on parcourt toute la liste des endroits controlles par le joueurs
 		 ter=listeTer[i];
-		 unites=ter.getNCavalry()+ter.getNSoldiers()+ter.getNGuns();
+		 unites=ter.getnCavalry()+ter.getnSoldiers()+ter.getnGuns();
 		 if (unites>2){
 			 nbTerControlesAvec2Armees++;
 			 

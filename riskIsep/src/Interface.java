@@ -23,9 +23,6 @@ public class Interface {
 		cliqueTerritoires(sourisX,sourisY);
 	}
 	}
-	/*interf = new Interface(1080,720);
-	interf.ecranCarte();
-	Interface.positionSouris();*/
 	
 	public static boolean clique()
 	{
