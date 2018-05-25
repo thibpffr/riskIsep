@@ -5,6 +5,7 @@ public class Interface {
 		StdDraw.setXscale(0,xMax);
 		StdDraw.setYscale(0,yMax);
 }
+
 	
 	public void ecranCarte()
 	{
