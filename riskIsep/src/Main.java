@@ -20,10 +20,10 @@ public class Main {
 		nbJoueurs=Interface.posThib();
 		System.out.println(nbJoueurs);
 		
-<<<<<<< HEAD
+
 		// tableau des jouerus
 		ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
-=======
+
 		
 		
 		interfMap = new Interface(1080,720);
