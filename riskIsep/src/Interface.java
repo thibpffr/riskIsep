@@ -5,25 +5,7 @@ public class Interface {
 		StdDraw.setXscale(0,xMax);
 		StdDraw.setYscale(0,yMax);
 }
-	public void ecranNbJoueurs(){
-		StdDraw.clear();
-		StdDraw.setCanvasSize(500,500);
-		//lignes horizontale
-		StdDraw.line(0,0.33,1,0.33);
-		StdDraw.line(0,0.66,1,0.66);
-		// ligne verticale
-		StdDraw.line(0.5,0,0.5,1);
-		
-		// texte 
-		StdDraw.text(0.25, 0.9,"Choisissez le nombre de joueurs");
-		// nb joueurs
-		StdDraw.text(0.75, 0.8,"2");
-		StdDraw.text(0.25, 0.5,"3");
-		StdDraw.text(0.75, 0.5,"4");
-		StdDraw.text(0.25, 0.2,"5");
-		StdDraw.text(0.75, 0.2,"6");
-		
-	}
+	
 	public void ecranCarte()
 	{
 		StdDraw.clear();
@@ -31,35 +13,7 @@ public class Interface {
 		StdDraw.picture(0.5,0.5,"image/CarteRiskContinents.jpg");
 	}
 	
-	public static int posThib(){
-		double sourisX, sourisY;
-		while(true){
-		if(StdDraw.mousePressed()){
-			//System.out.println("x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
-			sourisX = StdDraw.mouseX();
-			sourisY = StdDraw.mouseY();
-			//System.out.println("x="+sourisX+" y="+sourisY);
-			if (sourisX<0.5){
-				if (sourisY<0.33)
-					return 5;
-				else if (sourisY<0.66)
-					return 3;
-				
-			}
-			else{
-				if (sourisY<0.33)
-					return 6;
-				else if (sourisY<0.66)
-					return 4;
-				else
-					return 2;
-				
-			}
-			
-		}
-		
-	}
-	}
+	
 	public static void positionSouris() {
 	while(!clique()) {
 		//System.out.println("x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
