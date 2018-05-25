@@ -77,6 +77,9 @@ public class Player {
 		this.nCanon = nCanon;
 	}
 	
+	public ArrayList getControlledTerritories() {
+		return controlledTerritories;
+	}
 		
 	
 }
