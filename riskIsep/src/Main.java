@@ -20,12 +20,12 @@ public class Main {
 		
 		
 		
-		/*interfMap = new Interface(1080,720);
+		interfMap = new Interface(1080,720);
 		interfMap.ecranCarte();
 		
-		Interface.positionSouris();*/
+		Interface.positionSouris();
 		
-		/*
+		
 		ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
 		// demander de rentrer le nombre de joueurs qui jouent
 		
@@ -144,5 +144,5 @@ public class Main {
 		Region Asia = new Region(4,12,listAsiaTerritory);
 		Region Oceania = new Region(5,4,listOceaniaTerritory);
 		Region Africa = new Region(6,6,listAfricaTerritory);
-	}*/
-}}
+	}
+}
