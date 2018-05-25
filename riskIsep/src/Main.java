@@ -50,7 +50,9 @@ public class Main {
 		interfMap.ecranCarte();
 		
 		Interface.positionSouris();
-		// phase d'initialisation : les joueurs posent leurs soldats sur des territoires tour à tour
+		// phase d'initialisation : On pose aléatoirement des soldats sur les terrritoires tour à tour
+		
+		
 		
 		
 		

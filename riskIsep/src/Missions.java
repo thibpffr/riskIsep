@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Missions {
@@ -20,7 +21,7 @@ public boolean isMissionSuceeded(Missions m,Player p){
 }
 
 public boolean missionDeletePlayer(Missions m, Player pAttaquant, Player pDefendant){
-	if (pDefendant.getControlledTerritories().length==0){
+	if (pDefendant.getControlledTerritories().size()==0){
 		System.out.println("La mission du Player"+pAttaquant.getPlayerName()+" est reussie");
 		return true;
 	}
@@ -28,7 +29,7 @@ public boolean missionDeletePlayer(Missions m, Player pAttaquant, Player pDefend
 }
 
 public boolean missionNbTerritories(Missions m,Player p){
-	int listLength=p.getControlledTerritories().length;
+	int listLength=p.getControlledTerritories().size();
 	if (listLength>=m.getNbTerritoriesControlled()){
 		System.out.println("La mission du Player"+p.getPlayerName()+" est reussie");
 		return true;
@@ -39,9 +40,9 @@ public boolean missionNbTerritories(Missions m,Player p){
 	
 }
 public boolean missionTerritoriesAndRegions(Missions m,Player p){
-	int [] listeTer=p.getControlledTerritories();
-	int [] listeReg=p.getControlledRegions();
-	if((m.getNbTerritoriesControlled()<=listeTer.length)&&(m.getNbRegionControlled()<=listeReg.length)){
+	ArrayList listeTer=p.getControlledTerritories();
+	ArrayList listeReg=p.getControlledRegions();
+	if((m.getNbTerritoriesControlled()<=listeTer.size())&&(m.getNbRegionControlled()<=listeReg.size())){
 		System.out.println("La mission du Player"+p.getPlayerName()+" est reussie");
 		return true;
 	
@@ -51,10 +52,10 @@ public boolean missionTerritoriesAndRegions(Missions m,Player p){
 }
 public boolean mission2Armies(Missions m, Player p){
 	int nbTerControlesAvec2Armees=0;
-	Territory [] listeTer=p.getControlledTerritories();
+	ArrayList listeTer=p.getControlledTerritories();
 	Territory ter;
 	int unites=0;
-	 for (int i=0;i<listeTer.length;i++){
+	 for (int i=0;i<listeTer.size();i++){
 		 // on parcourt toute la liste des endroits controlles par le joueurs
 		 ter=listeTer[i];
 		 unites=ter.getnCavalry()+ter.getnSoldiers()+ter.getnGuns();
