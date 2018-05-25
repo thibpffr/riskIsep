@@ -32,7 +32,6 @@ public class Main {
 		Interface.positionSouris();
 		
 		
-		ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
 		// demander de rentrer le nombre de joueurs qui jouent
 
 		
