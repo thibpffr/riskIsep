@@ -24,7 +24,7 @@ public class Player {
 
 	public int addRenfort(Player player) {
 		int numberOfTroup=0;
-		for (int i : controlledRegions) {
+		for (int i : player.controlledRegions) {
 			numberOfTroup = numberOfTroup + Region.getNumberOfTerritory()/2;
 		}
 		numberOfTroup = numberOfTroup + player.controlledTerritories.size()/3;
