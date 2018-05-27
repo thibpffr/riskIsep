@@ -22,9 +22,13 @@ public class Player {
 	
 	
 
-	public void addRenfort(Player player) {
+	public int addRenfort(Player player) {
 		int numberOfTroup=0;
-		numberOfTroup = player.controlledTerritories.size()/3;
+		for (int i : controlledRegions) {
+			numberOfTroup = numberOfTroup + Region.getNumberOfTerritory()/2;
+		}
+		numberOfTroup = numberOfTroup + player.controlledTerritories.size()/3;
+		return numberOfTroup;
 	}
 
 
