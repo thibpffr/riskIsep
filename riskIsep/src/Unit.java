@@ -20,7 +20,6 @@ public class Unit {
 		int nbDef=0;
 		int n;
 		while (nbDef<2){
-			if ()
 			
 		}
 	}
