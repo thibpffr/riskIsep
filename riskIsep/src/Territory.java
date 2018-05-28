@@ -117,7 +117,7 @@ public class Territory {
 		
 	
 	
-	public boolean moveArmy(Territory terOrigine, Territory terCible,int nGuns, int nCavalry,int nSoldiers){
+	public static boolean moveArmy(Territory terOrigine, Territory terCible,int nGuns, int nCavalry,int nSoldiers){
 		// cette fonction bouge des armées d'un territoire à un autre 
 		// si le déplacement est posssible, elle l'effectue et renvoie true, sinon elle renvoie false
 		
