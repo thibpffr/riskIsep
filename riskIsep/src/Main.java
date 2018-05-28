@@ -79,21 +79,28 @@ public class Main {
 				//1 si attaque 
 				//2 si passer son tour
 				
-				
+				choix = Interface.actionChoice();
 
 				// s'il veut déplacer des troupes 
 					if (choix==0)
 					{
-				
+						Territory terOrigine= Interface.territoryChoice();
+						if (Player.isControlledTerritory(terOrigine.getTerritoryNumber())) {
+							Territory terCible = Interface.territoryChoice();
+							int nGuns = terOrigine.getnGuns();
+							int nCavalry = terOrigine.getnCavalry();
+							int nSoldiers = terOrigine.getnSoldiers();
+							if (Territory.moveArmy(terOrigine,terCible,nGuns,nCavalry,nSoldiers))
+							{
+								System.out.println("Le déplacement a été effectué");
+							}
+						}
 					// il choisit le territoire duquel les soldats doivent partir
 				
 					// il choisit combien d'unités il veut déplacer
 				
 				
-						if (moveArmy(terOrigine,terCible,nGuns,nCavalry,nSoldiers))
-						{
-							System.out.println("Le déplacement a été effectué");
-						}
+						
 
 				
 					}
@@ -101,29 +108,28 @@ public class Main {
 					else if (choix==1)
 					{
 					// nous sommes dans le cas d'une attaque 
-					
-					
 					// choix du territoire depuis lequel on attaque
-					
-					
 					// choix du territoire a attaquer 
-					
-					
 					// choix des unités attaquantes
+						Territory terOrigine= Interface.territoryChoice();
+						if (Player.isControlledTerritory(terOrigine.getTerritoryNumber())) {
+							Territory terCible = Interface.territoryChoice();
+							int nGunsAttaquant = terOrigine.getnGuns();
+							int nCavalryAttaquant = terOrigine.getnCavalry();
+							int nSoldiersAttaquant = terOrigine.getnSoldiers();
 					
-					
-						if (attackTerritoryCheck(terOrigine,terCible,nGunsAttaquant, nCavalryAttaquant,nSoldiersAttaquant ))
+						if (Territory.attackTerritoryCheck(terOrigine,terCible,nGunsAttaquant, nCavalryAttaquant,nSoldiersAttaquant ))
 						{
 						
 						// les unités jouent
 						
 						
-							if (territoryWins(terOrigine,  terCible, nGunsRestants,nCavalryRestants, nSoldiersRestants))
+							if (Territory.territoryWins(terOrigine,  terCible, nGunsRestants,nCavalryRestants, nSoldiersRestants))
 							{
 								System.out.println("Le territoire est gagné");
 							}
 						}
-					
+						}
 					
 					}
 					
