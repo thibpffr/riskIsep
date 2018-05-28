@@ -88,6 +88,14 @@ public class Interface {
 		}
 	}
 	
+	public static void actionChoice() {
+		while(!clique()) {
+			double sourisX = StdDraw.mouseX();
+			double sourisY = StdDraw.mouseY();
+			cliqueActions(sourisX,sourisY);
+		}
+	}
+	
 	public static boolean numberOfClique(int number) {
 		int i=0;
 		while(i<number) {
@@ -102,7 +110,23 @@ public class Interface {
 	{
 		return StdDraw.isMousePressed();
 	}
-	
+	public static void cliqueActions(double sourisX, double sourisY) {
+		if((sourisX > 0.22 && sourisX < 0.40) && (sourisY > 0.35 && sourisY < 0.65))//Cavalier
+		{
+			System.out.println("Vous attaquez");
+		}
+		else if((sourisX > 0.44 && sourisX < 0.62) && (sourisY > 0.35 && sourisY < 0.65))//Canon
+		{
+			System.out.println("vous vous deplacez");
+		}
+		else if((sourisX > 0.67 && sourisX < 0.75) && (sourisY > 0.35 && sourisY < 0.65))//Soldat
+		{
+			System.out.println("vous passez votre tour");
+		}
+		else {
+			System.out.println("ceci n'est pas une action");
+		}
+	}
 	public static void cliqueUnit(double sourisX, double sourisY) {
 		if((sourisX > 0.22 && sourisX < 0.40) && (sourisY > 0.35 && sourisY < 0.65))//Cavalier
 		{

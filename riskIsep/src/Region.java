@@ -2,7 +2,7 @@
 public class Region {
 
 	private int regionNumber;
-	private int numberOfTerritory;
+	private static int numberOfTerritory;
 	private int[] territoryInRegion;
 
 	public Region(int regionNumber, int numberOfTerritory, int[] territoryInRegion) {
@@ -40,7 +40,7 @@ public int getRegionNumber() {
 	return regionNumber;
 }
 
-public int getNumberOfTerritory() {
+public static int getNumberOfTerritory() {
 	return numberOfTerritory;
 }
 

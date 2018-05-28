@@ -9,6 +9,12 @@ public class Territory {
 	private int nCavalry=0;
 	private int nGuns=0;
 	
+	
+	public Territory(int territoryNumber, int[] borderTerritories) {
+		this.territoryNumber = territoryNumber;
+		this.borderTerritories = borderTerritories;
+	}
+
 	// Methodes
 	public static void addControlledTerritory(Player player,Territory terCible) {
 		player.controlledTerritories.add(terCible.getTerritoryNumber());
