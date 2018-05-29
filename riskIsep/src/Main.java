@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import edu.princeton.cs.introcs.StdDraw;
 
 
@@ -13,6 +15,8 @@ public class Main {
 		 
 	public static void main(String[] args) {
 		
+		String[] choices = {"2", "3", "4", "5", "6"};
+		int res = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de joueurs ?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choices, "2"));
 		
 		// choix du nombre de joueurs qui jouent
 		interfNbJoueurs=new Interface(500,500);
