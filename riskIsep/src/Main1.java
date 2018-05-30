@@ -156,7 +156,7 @@ public class Main1 {
 				
 		// creation de la carte et de l'interface		
 		interfMap = new Interface(1080,720);
-		interfMap.ecranCarte();
+		interfMap.ecranCarte(territoryList);
 		
 		choix = Interface.actionChoice();
 		System.out.println("choix="+choix);
