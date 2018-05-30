@@ -141,7 +141,15 @@ public class Main1 {
 				}
 				
 		// attribution aléatoire des territoires a chaque joueur
-				
+				int j=0;
+				for (int i=0; i<territoryList.length;i++) {
+					territoryList[i].setPlayerWhoControlls(tableauJoueurs[j]);
+					tableauJoueurs[j].controlledTerritories.add(territoryList[i].getTerritoryNumber());//on rajoute le territoire à la liste des territoires controllés par le joueur.
+					j++;
+					if (j>=nbJoueurs) {
+						j=0;
+					}
+				}		
 				
 				
 				
