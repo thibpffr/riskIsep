@@ -173,9 +173,10 @@ public class Main1 {
 				
 				
 				
+		
 				
 				
-				if (Territory.moveArmy(terOrigin,terCibl,nGuns,nCavalry,nSoldiers))
+				if(Territory.moveArmy(terOrigin,terCibl,nGuns,nCavalry,nSoldiers))
 					{
 						System.out.println("Le déplacement a été effectué");
 					}
