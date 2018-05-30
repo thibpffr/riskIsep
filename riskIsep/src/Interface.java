@@ -15,7 +15,9 @@ public class Interface {
 		StdDraw.setCanvasSize(1193,675);	
 		StdDraw.picture(0.5,0.5,"image/CarteRiskContinents.jpg");
 		for (int i=0;i<territoryList.length;i++){
-			StdDraw.setPenColor(StdDraw.RED);
+			if (getPlayerNumber(territoryList[i].getPlayerWhoControlls())==0){
+				StdDraw.setPenColor(StdDraw.RED);
+			}
 			StdDraw.circle((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,0.03);
 			
 		}

@@ -135,6 +135,8 @@ public class Main1 {
 					//Missions m = Missions.giveAMission(nbJoueurs, Missions.missionTab);
 					
 					Player p= new Player ();
+					p.setPlayerName(i);
+					
 					
 					tableauJoueurs[i]=p;
 					
