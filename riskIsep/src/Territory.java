@@ -8,11 +8,20 @@ public class Territory {
 	private int nSoldiers=0;
 	private int nCavalry=0;
 	private int nGuns=0;
+	private double xMin;
+	private double xMax;
+	private double yMin;
+	private double yMax;
 	
 	
-	public Territory(int territoryNumber, int[] borderTerritories) {
+	public Territory(int territoryNumber, int[] borderTerritories,double xmin,double xmax, double ymin,double ymax) {
 		this.territoryNumber = territoryNumber;
 		this.borderTerritories = borderTerritories;
+		this.xMax=xmax;
+		this.xMin=xmin;
+		this.yMin=ymin;
+		this.yMax=ymax;
+		
 	}
 
 	// Methodes
