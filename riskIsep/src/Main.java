@@ -113,14 +113,14 @@ public class Main {
 		 
 	
 		
-		String[] choices = {"2", "3", "4", "5", "6"};
+		String[] choices = {2, "3", "4", "5", "6"};
 		int res = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de joueurs ?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choices, "2"));
 		
 		// choix du nombre de joueurs qui jouent
-		interfNbJoueurs=new Interface(500,500);
-		interfNbJoueurs.ecranNbJoueurs();
+		//interfNbJoueurs=new Interface(500,500);
+		//interfNbJoueurs.ecranNbJoueurs();
 		int nbJoueurs=0;
-		nbJoueurs=Interface.posThib();
+		//nbJoueurs=Interface.posThib();
 		System.out.println(nbJoueurs);
 		
 
@@ -128,11 +128,6 @@ public class Main {
 		ArrayList<Player> tableauJoueurs= new ArrayList<Player>();
 
 		
-		
-		interfMap = new Interface(1080,720);
-		interfMap.ecranCarte();
-		
-		Interface.positionSouris();
 		
 		
 		// demander de rentrer le nombre de joueurs qui jouent

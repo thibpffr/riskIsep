@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class Main1 {
@@ -103,44 +105,85 @@ public class Main1 {
 	static Territory[] territoryList = {Bresil,Argentine,Venezuela,Perou,Mexique,WUS,EUS,Quebec,Ontario,Alberta,NCanada,Alaska,Groenland,Islande,Scandinavie,UK,Russie,Allemagne,France,Italie,Arabie,Asia22,Asia23,Asia24,Asia25,Asia26,Asia27,Asia28,Chine,Inde,Asia31,Japon,Oceania33,NewZeland,EAustralia,WAustralia,Madagascar,SAfrica,Congo,Somalie,Egypt,Maghreb};
 	
 	
+	
+	
+	
 	public static void main(String[] args) {
-		String[] choices = {"2", "3", "4", "5", "6"};
-		int res = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de joueurs ?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choices, "2"));
 		
+		// -----------------declaration des variables---------------
+		
+		int nbJoueurs=0; 
+		int choix=-1; // choix du joueur (déplacer des armées, passser son tour ou attaquer)
+		int terOrigine; //numero du territoire origine renvoyé par la fonction territoryChoice 
+		Territory terOrigin;// territoire lui meme identifié par son numero par la variable juste au dessus
+		int terCible;// de meme qu'au dessus
+		Territory terCibl;//pareil
+		
+			// variables intermédiaires pour effectuer les déplacements
+		int nGuns=0;
+		int nCavalry=0;
+		int nSoldiers=0;
+		
+		// demander de rentrer le nombre de joueurs qui jouent
+		String[] choices = {"2", "3", "4", "5", "6"};
+		nbJoueurs= Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de joueurs ?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choices, "2"));
+		System.out.println("nbjoueurs="+nbJoueurs);
+		// tableau des jouerus
+				Player[] tableauJoueurs=new Player[nbJoueurs];
+		// creation des différents joueurs 
+				for (int i=0;i<nbJoueurs;i++){
+					//Missions m = Missions.giveAMission(nbJoueurs, Missions.missionTab);
+					
+					Player p= new Player ();
+					
+					tableauJoueurs[i]=p;
+					
+				}
+				
+		// attribution aléatoire des territoires a chaque joueur
+				
+				
+				
+				
+				
+		// creation de la carte et de l'interface		
 		interfMap = new Interface(1080,720);
 		interfMap.ecranCarte();
-		int choix;
+		
 		choix = Interface.actionChoice();
+		System.out.println("choix="+choix);
 
 		// s'il veut déplacer des troupes 
 			if (choix==0)
 				
 			{
-				int terOrigine= Interface.territoryChoice();
-				for (int i=0; i<territoryList.length;i++) {
-					if (terOrigine==i) {
-						terOrigin = territoryList[i];
-					}
-				}
-				if (Player.isControlledTerritory(terOrigin.getTerritoryNumber())) {
-					int terCible = Interface.territoryChoice();
-					for (int i=0; i<territoryList.length;i++) {
-						if (terCible==i) {
-							terCibl = territoryList[i];
-						}
-					}
-					int nGuns = 0;
-					int nCavalry = 0;
-					int nSoldiers = 0;
-					if (Territory.moveArmy(terOrigin,terCibl,nGuns,nCavalry,nSoldiers))
+				// le joueur choisit le territoire origine depuis lequel il veut déplacer des armées
+				terOrigine= Interface.territoryChoice();
+				terOrigin = territoryList[terOrigine];
+				
+				// le joueur choisit le territoire cible
+				terCible = Interface.territoryChoice();
+				terCibl = territoryList[terCible];
+					
+				
+				//Le joueur choisit le nombre d'armées à déplacer 
+				
+				
+				// initialiser nguns,ncavalry et nsoldiers
+				
+				
+				
+				
+				
+				if (Territory.moveArmy(terOrigin,terCibl,nGuns,nCavalry,nSoldiers))
 					{
 						System.out.println("Le déplacement a été effectué");
 					}
-				}
+			}
 			// il choisit le territoire duquel les soldats doivent partir
 		
 			// il choisit combien d'unités il veut déplacer
-			}
+	}
 	}
 	
-}
+
