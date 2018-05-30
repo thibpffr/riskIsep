@@ -169,7 +169,7 @@ public class Main1 {
 				//Le joueur choisit le nombre d'armées à déplacer 
 				
 				
-				// initialiser nguns,ncavalry et nsoldiers
+				// !!!!!! initialiser nguns,ncavalry et nsoldiers
 				
 				
 				
@@ -179,10 +179,14 @@ public class Main1 {
 					{
 						System.out.println("Le déplacement a été effectué");
 					}
+				else
+				{
+					System.out.println("Echec du déplacement");
+				}
 			}
-			// il choisit le territoire duquel les soldats doivent partir
+
 		
-			// il choisit combien d'unités il veut déplacer
+	
 	}
 	}
 	
