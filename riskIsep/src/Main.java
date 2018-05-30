@@ -127,7 +127,7 @@ public class Main {
 					// choix du territoire depuis lequel on attaque
 					// choix du territoire a attaquer 
 					// choix des unités attaquantes
-						Territory terOrigine= Interface.territoryChoice();
+						terOrigin= Interface.territoryChoice();
 						if (Player.isControlledTerritory(terOrigine.getTerritoryNumber())) {
 							Territory terCible = Interface.territoryChoice();
 							int nGunsAttaquant = terOrigine.getnGuns();
