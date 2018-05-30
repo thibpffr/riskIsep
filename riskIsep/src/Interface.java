@@ -12,7 +12,7 @@ public class Interface {
 	public void ecranCarte()
 	{
 		StdDraw.clear();
-		StdDraw.setCanvasSize(1193,675);
+		StdDraw.setCanvasSize(1dsdsq);
 		StdDraw.picture(0.5,0.5,"image/CarteRiskContinents.jpg");
 	}
 	

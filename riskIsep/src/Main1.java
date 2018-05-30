@@ -108,7 +108,7 @@ public class Main1 {
 	
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		// -----------------declaration des variables---------------
 		
@@ -160,19 +160,25 @@ public class Main1 {
 		
 		choix = Interface.actionChoice();
 		System.out.println("choix="+choix);
-
+		java.lang.Thread.sleep(500);
 		// s'il veut déplacer des troupes 
 			if (choix==0)
 				
 			{
 				// le joueur choisit le territoire origine depuis lequel il veut déplacer des armées
+				System.out.println("choisissez le ter");
 				terOrigine= Interface.territoryChoice();
+				System.out.println("terOrigine"+terOrigine+"choisi");
 				terOrigin = territoryList[terOrigine];
 				
+				
+				
 				// le joueur choisit le territoire cible
+				java.lang.Thread.sleep(500);
 				terCible = Interface.territoryChoice();
+				System.out.println("ter"+terCible+"choisi");
 				terCibl = territoryList[terCible];
-					
+				System.out.println("ok!");
 				
 				//Le joueur choisit le nombre d'armées à déplacer 
 				
