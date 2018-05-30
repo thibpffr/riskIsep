@@ -115,18 +115,18 @@ public class Interface {
 		return StdDraw.isMousePressed();
 	}
 	public static int cliqueActions(double sourisX, double sourisY) {
-		if((sourisX > 0.22 && sourisX < 0.40) && (sourisY > 0.35 && sourisY < 0.65))//Cavalier
+		if((sourisX > 0 && sourisX < 1) && (sourisY > 0 && sourisY < 1))//Cavalier
 		{
 			return 0;
 		}
-		else if((sourisX > 0.44 && sourisX < 0.62) && (sourisY > 0.35 && sourisY < 0.65))//Canon
+		/*else if((sourisX > 0.44 && sourisX < 0.62) && (sourisY > 0.35 && sourisY < 0.65))//Canon
 		{
 			return 1;
 		}
 		else if((sourisX > 0.67 && sourisX < 0.75) && (sourisY > 0.35 && sourisY < 0.65))//Soldat
 		{
 			return 2;
-		}
+		}*/
 		else {
 			return -1;
 		}
