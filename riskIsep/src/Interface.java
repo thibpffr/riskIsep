@@ -47,6 +47,11 @@ public class Interface {
 		}
 	}
 	
+	public static void consoleVirt(Interface interfMap,Territory[] territoryList,double x,double y, String k){
+		interfMap.ecranCarte(territoryList);
+		StdDraw.text(x,y,k);
+	}
+	
 	
 	/*public void ecranNbJoueurs(){
 	StdDraw.clear();
