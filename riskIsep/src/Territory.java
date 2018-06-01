@@ -29,6 +29,61 @@ public class Territory {
 	}
 
 	// Methodes
+	
+	public static int placerTroupe(int numberOfTroup,Territory terCible) {
+		int troupUsed=0;
+		String[] choiceTroup = {"Soldat (-1)","Cavalier(-3)","Canon(-7)","Arreter"};
+		String choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
+		if (choixTroupe==choiceTroup[0]) {
+			//Il faut encore choisir le nombre de soldat que l'on veut placer
+			
+			String[] choicenbSoldat = new String[numberOfTroup+1];
+			for (int i=0;i<=numberOfTroup;i++) {
+				choicenbSoldat[i]= String.valueOf(i+1);
+			}
+			int choixnbSoldat = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbSoldat, "0"));
+			
+			
+			terCible.setnSoldiers(terCible.getnSoldiers()+choixnbSoldat);
+			numberOfTroup=numberOfTroup-choixnbSoldat;
+			troupUsed=choixnbSoldat;
+			System.out.println("Il y sur le territoire: "+ terCible.getnSoldiers()+" soldats "+terCible.getnCavalry()+" cavaliers "+ terCible.getnGuns()+"canons");
+			System.out.println("il reste "+numberOfTroup+" troupe à placer");
+		}
+		else if (choixTroupe==choiceTroup[1]) {
+			String[] choicenbCavalier = new String[numberOfTroup+1];
+			for (int i=0;i<=numberOfTroup;i++) {
+				choicenbCavalier[i]= String.valueOf(i+1);
+			}
+			int choixnbCavalier = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbCavalier, "0"));
+			
+			terCible.setnCavalry(terCible.getnCavalry()+1);
+			numberOfTroup=numberOfTroup-3*choixnbCavalier;
+			troupUsed=choixnbCavalier*3;
+			System.out.println("Il y sur le territoire: "+ terCible.getnSoldiers()+" soldats "+terCible.getnCavalry()+" cavaliers "+ terCible.getnGuns()+"canons");
+			System.out.println("il reste "+numberOfTroup+" troupe à placer");
+		}
+		else if (choixTroupe==choiceTroup[2]) {
+			String[] choicenbCanon = new String[numberOfTroup+1];
+			for (int i=0;i<=numberOfTroup;i++) {
+				choicenbCanon[i]= String.valueOf(i+1);
+			}
+			int choixnbCanon = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbCanon, "0"));
+			
+			terCible.setnGuns(terCible.getnGuns()+1);
+			numberOfTroup=numberOfTroup-7*choixnbCanon;
+			troupUsed=choixnbCanon*7;
+			System.out.println("Il y sur le territoire: "+ terCible.getnSoldiers()+" soldats "+terCible.getnCavalry()+" cavaliers "+ terCible.getnGuns()+"canons");
+			System.out.println("il reste "+numberOfTroup+" troupe à placer");
+		
+		}
+		return troupUsed;
+	}
+	
+	
+	
+	
+	
 	public static void addControlledTerritory(Player player,Territory terCible) {
 		player.controlledTerritories.add(terCible.getTerritoryNumber());
 	}
@@ -319,6 +374,60 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			ter.setnGuns(ter.getnGuns()-1);
 		}
 	}
+	
+	
+	
+	
+	public static int[] chooseUnit(Territory terOrigin){
+		int nGuns;
+		int nCavalry;
+		int nSoldiers;
+		//On verifie qu'il y ait des canons sur le territoire; s'il n'y en a pas, on ne propose pas de choisir le nombre.
+		if (terOrigin.getnGuns()==0) {
+			nGuns = 0;
+		}
+		else { // s'il y en a on fait une fenêtre pop up pour choisir le nombre que l'on veut déplacer
+		//On crée un tableau contenant les choix que l'on dans le choix du nombre de canon pour pouvoir l'utiliser dans OptionPane
+			String[] choiceGun = new String[terOrigin.getnGuns()];
+		for (int i=0;i<=terOrigin.getnGuns();i++) {
+			choiceGun[i]= String.valueOf(i+1);
+		}
+		nGuns = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de Canons voulez-vous déplacer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceGun, "0"));
+		}
+		
+		//On verifie qu'il y ait des cavaliers sur le territoire; s'il n'y en a pas, on ne propose pas de choisir le nombre.
+		if (terOrigin.getnCavalry()==0) {
+			nCavalry=0;
+		}
+		else { // s'il y en a on fait une fenêtre pop up pour choisir le nombre que l'on veut déplacer
+			//On crée un tableau contenant les choix que l'on dans le choix du nombre de cavalier pour pouvoir l'utiliser dans OptionPane
+			String[] choiceCavalry = new String[terOrigin.getnCavalry()];
+		for (int i=0;i<=terOrigin.getnCavalry();i++) {
+			choiceCavalry[i]= String.valueOf(i+1);
+		}
+		nCavalry = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de Cavaliers voulez-vous déplacer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceCavalry, "0"));
+		}
+		
+		//On verifie qu'il y ait des soldats sur le territoire; s'il n'y en a pas, on ne propose pas de choisir le nombre.
+		if (terOrigin.getnSoldiers()==0) {
+			nSoldiers=0;
+		}
+		else { // s'il y en a on fait une fenêtre pop up pour choisir le nombre que l'on veut déplacer
+			//On crée un tableau contenant les choix que l'on dans le choix du nombre de soldat pour pouvoir l'utiliser dans OptionPane
+			String[] choiceSoldier = new String[terOrigin.getnSoldiers()];
+		for (int i=0;i<terOrigin.getnSoldiers();i++) {
+			choiceSoldier[i]= String.valueOf(i+1);
+		}
+		nSoldiers = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de Soldats voulez-vous déplacer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceSoldier, "0"));
+		}
+		
+		int Table[]= {nSoldiers,nCavalry,nGuns};
+		return Table;
+	}
+	
+	
+	
+	
 	// Getters & Setters
 	public static void ajouterUnite(Territory ter,int num){
 		if (num==1){
@@ -332,6 +441,8 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			ter.setnGuns(ter.getnGuns()+1);
 		}
 	}
+	
+	
 	public int getTerritoryNumber() {
 		return territoryNumber;
 	}

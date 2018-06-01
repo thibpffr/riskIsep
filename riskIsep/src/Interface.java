@@ -1,6 +1,8 @@
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Interface {
+	public double sourisX = 0;
+	public double sourisY = 0;
 	public Interface(int xMax,int yMax){
 		StdDraw.setXscale(0,xMax);
 		StdDraw.setYscale(0,yMax);
@@ -39,7 +41,7 @@ public class Interface {
 	}
 	
 	
-	public void ecranNbJoueurs(){
+	/*public void ecranNbJoueurs(){
 	StdDraw.clear();
 	StdDraw.setCanvasSize(500,500);
 	//lignes horizontale
@@ -57,9 +59,9 @@ public class Interface {
 	StdDraw.text(0.25, 0.2,"5");
 	StdDraw.text(0.75, 0.2,"6");
 
-	}
+	}*/
 	
-	public static int posThib(){
+	/*public static int posThib(){
 		double sourisX, sourisY;
 		while(true){
 		if(StdDraw.mousePressed()){
@@ -87,43 +89,94 @@ public class Interface {
 		}
 
 		}
-		}
+		}*/
 	
 	
-	public static void positionSouris() {
+	public void positionSouris() {
 	while(!clique()) {
 		System.out.println("x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
 		}
 	}
-	public static void unitChoice() {
+	/*public static void unitChoice() {
 		ecranUnit();
 		while(!clique()) {
 		double sourisX = StdDraw.mouseX();
 		double sourisY = StdDraw.mouseY();
 		cliqueUnit(sourisX,sourisY);
 		}
-	}
-	public static int territoryChoice() {
-		while(!clique()) {
-		double sourisX = StdDraw.mouseX();
-		double sourisY = StdDraw.mouseY();
-		int territoryChoice = cliqueTerritoires(sourisX,sourisY);
-		return territoryChoice;
+	}*/
+	public int territoryChoice() {
+		sourisX=0;
+		sourisY=0;
+		while(testTerritoire(sourisX, sourisY)) {
+			if(clique())
+			{
+				this.sourisX = StdDraw.mouseX();
+				this.sourisY = StdDraw.mouseY();
+				
+				while(clique())
+				{
+					
+				}
+			}
 		}
-		return -1;
+		int territoryChoice = cliqueTerritoires(sourisX,sourisY)-1;
+		return territoryChoice;
 	}
 	
-	public static int actionChoice() {
-		while(!clique()) {
-			double sourisX = StdDraw.mouseX();
-			double sourisY = StdDraw.mouseY();
+	public boolean testTerritoire(double a, double b)
+	{
+		if(cliqueTerritoires(a,b) == -1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean testAction(double a, double b)
+	{
+		if(cliqueActions(a,b) == -1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public int actionChoice() {
+		sourisX=0;
+		sourisY=0;
+		while(testAction(sourisX, sourisY)) {
+			if(clique())
+			{
+				this.sourisX = StdDraw.mouseX();
+				this.sourisY = StdDraw.mouseY();
+				
+				while(clique())
+				{
+					
+				}
+			}
+		}
 			int action = cliqueActions(sourisX,sourisY);
 			return action;
-		}
-		return -1;
 	}
 	
-	public static boolean numberOfClique(int number) {
+	
+	public void attendre()
+	{
+		while(clique())
+		{
+
+		}
+	}
+	
+	/*public static boolean numberOfClique(int number) {
 		int i=0;
 		while(i<number) {
 			if(clique()==true) {
@@ -131,22 +184,22 @@ public class Interface {
 			}
 		}
 		return false;
-	}
+	}*/
 	
-	public static boolean clique()
+	public boolean clique()
 	{
 		return StdDraw.isMousePressed();
 	}
-	public static int cliqueActions(double sourisX, double sourisY) {
-		if((sourisX > 0 && sourisX < 1) && (sourisY > 0 && sourisY < 1))//Cavalier
+	public int cliqueActions(double sourisX, double sourisY) {
+		if((sourisX > 0.27 && sourisX < 0.40) && (sourisY > 0.03 && sourisY < 0.1))//Deplacement
 		{
 			return 0;
 		}
-		/*else if((sourisX > 0.44 && sourisX < 0.62) && (sourisY > 0.35 && sourisY < 0.65))//Canon
+		else if((sourisX > 0.85 && sourisX < 0.97) && (sourisY > 0.02 && sourisY < 0.1))//Fin de tour
 		{
-			return 1;
+			return 2;
 		}
-		else if((sourisX > 0.67 && sourisX < 0.75) && (sourisY > 0.35 && sourisY < 0.65))//Soldat
+		/*else if((sourisX > 0.67 && sourisX < 0.75) && (sourisY > 0.35 && sourisY < 0.65))//Soldat
 		{
 			return 2;
 		}*/
@@ -154,7 +207,7 @@ public class Interface {
 			return -1;
 		}
 	}
-	public static void cliqueUnit(double sourisX, double sourisY) {
+	/*public static void cliqueUnit(double sourisX, double sourisY) {
 		if((sourisX > 0.22 && sourisX < 0.40) && (sourisY > 0.35 && sourisY < 0.65))//Cavalier
 		{
 			System.out.println("ceci est un cavalier");
@@ -170,9 +223,9 @@ public class Interface {
 		else {
 			System.out.println("ceci n'est pas une troupe");
 		}
-		}
+		}*/
 	
-	 public static int cliqueTerritoires(double sourisX, double sourisY)
+	 public int cliqueTerritoires(double sourisX, double sourisY)
 	{
 			if((sourisX > 0.34 && sourisX < 0.38) && (sourisY > 0.77 && sourisY < 0.82))//Island
 			{

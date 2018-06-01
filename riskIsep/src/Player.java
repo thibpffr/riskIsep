@@ -2,23 +2,24 @@ import java.util.ArrayList;
 
 public class Player {
 	private int playerNumber;
-	private int nSoldier=0;
-	private int nCavalry=0;
-	private int nCanon=0;
+	public Player(int playerName) {
+		this.playerNumber = playerName;
+	}
+	private int nTroup=0;
 	static ArrayList<Integer> controlledTerritories = new ArrayList<Integer>();
 	static ArrayList<Integer> controlledRegions=new ArrayList<Integer>();
 
 
 
 
-	public static boolean isControlledTerritory(int territoryNumber) {
+	/*public static boolean isControlledTerritory(int territoryNumber) {
 		for(int i : controlledTerritories) {	
 		if(i==territoryNumber){
 			return true;
 		}
 		}
 		return false;
-	}
+	}*/
 	
 	
 
@@ -58,28 +59,12 @@ public class Player {
 		this.playerNumber = playerName;
 	}
 
-	public int getnSoldier() {
-		return nSoldier;
+	public int getnTroup() {
+		return nTroup;
 	}
 
-	public void setnSoldier(int nSoldier) {
-		this.nSoldier = nSoldier;
-	}
-
-	public int getnCavalry() {
-		return nCavalry;
-	}
-
-	public void setnCavalry(int nCavalry) {
-		this.nCavalry = nCavalry;
-	}
-
-	public int getnCanon() {
-		return nCanon;
-	}
-
-	public void setnCanon(int nCanon) {
-		this.nCanon = nCanon;
+	public void setnTroup(int nTroup) {
+		this.nTroup = nTroup;
 	}
 	
 	public ArrayList getControlledTerritories() {
