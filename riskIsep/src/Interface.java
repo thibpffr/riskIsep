@@ -1,3 +1,5 @@
+import java.awt.Font;
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Interface {
@@ -36,7 +38,12 @@ public class Interface {
 				StdDraw.setPenColor(StdDraw.WHITE);
 			}
 			StdDraw.filledCircle((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,0.03);
+			StdDraw.setPenColor(StdDraw.WHITE);
+			Font font = new Font("Arial", Font.BOLD, 10);
+			StdDraw.setFont(font);
+			StdDraw.text((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,"s :"+territoryList[i].getnSoldiers()+"c :"+territoryList[i].getnCavalry()+"g :"+territoryList[i].getnGuns());
 			
+			//"s :"+territoryList[i].getnSoldiers()
 		}
 	}
 	
@@ -65,7 +72,7 @@ public class Interface {
 		double sourisX, sourisY;
 		while(true){
 		if(StdDraw.mousePressed()){
-			//System.out.println("x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
+			//StdDraw.text(0.5,0.5,"x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
 			sourisX = StdDraw.mouseX();
 			sourisY = StdDraw.mouseY();
 			//System.out.println("x="+sourisX+" y="+sourisY);

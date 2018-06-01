@@ -57,7 +57,7 @@ public class Territory {
 			}
 			int choixnbCavalier = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbCavalier, "0"));
 			
-			terCible.setnCavalry(terCible.getnCavalry()+1);
+			terCible.setnCavalry(terCible.getnCavalry()+choixnbCavalier);
 			numberOfTroup=numberOfTroup-3*choixnbCavalier;
 			troupUsed=choixnbCavalier*3;
 			System.out.println("Il y sur le territoire: "+ terCible.getnSoldiers()+" soldats "+terCible.getnCavalry()+" cavaliers "+ terCible.getnGuns()+"canons");
@@ -70,7 +70,7 @@ public class Territory {
 			}
 			int choixnbCanon = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbCanon, "0"));
 			
-			terCible.setnGuns(terCible.getnGuns()+1);
+			terCible.setnGuns(terCible.getnGuns()+choixnbCanon);
 			numberOfTroup=numberOfTroup-7*choixnbCanon;
 			troupUsed=choixnbCanon*7;
 			System.out.println("Il y sur le territoire: "+ terCible.getnSoldiers()+" soldats "+terCible.getnCavalry()+" cavaliers "+ terCible.getnGuns()+"canons");
@@ -205,6 +205,7 @@ public class Territory {
 		
 		// on verifie que les unités qui doivent etre deplacees sont bien presentes sur le territoire origine
 		else if ((terOrigine.getnGuns()<nGuns)||(terOrigine.getnCavalry()<nCavalry)||(terOrigine.getnSoldiers()<nSoldiers)){
+			System.out.println("nguns"+nGuns+" ncaval"+nCavalry+" nsoldiers"+nSoldiers);
 			System.out.println("Le nombre d'unité à déplacer n'est pas cohérent par rapport au nombre d'unités présents sur le territoire Origine");
 			return false;
 			
