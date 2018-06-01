@@ -204,18 +204,18 @@ public class Interface {
 		return StdDraw.isMousePressed();
 	}
 	public int cliqueActions(double sourisX, double sourisY) {
-		if((sourisX > 0.27 && sourisX < 0.40) && (sourisY > 0.03 && sourisY < 0.1))//Deplacement
+		if((sourisX > 0.86 && sourisX < 0.97) && (sourisY > 0.72 && sourisY < 0.85))//Deplacement
 		{
 			return 0;
 		}
-		else if((sourisX > 0.85 && sourisX < 0.97) && (sourisY > 0.02 && sourisY < 0.1))//Fin de tour
+		/*else if((sourisX > 0.86 && sourisX < 0.97) && (sourisY > 0.54 && sourisY < 0.67))//Attaque
+		{
+			return 1;
+		}*/
+		else if((sourisX > 0.86 && sourisX < 0.97) && (sourisY > 0.37 && sourisY < 0.5))//Fin de tour
 		{
 			return 2;
 		}
-		/*else if((sourisX > 0.67 && sourisX < 0.75) && (sourisY > 0.35 && sourisY < 0.65))//Soldat
-		{
-			return 2;
-		}*/
 		else {
 			return -1;
 		}
