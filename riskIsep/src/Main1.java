@@ -177,7 +177,7 @@ public class Main1 {
 			else {
 				troupDepart=20;
 			}
-			
+			//ll
 		}
 		//chaque joueur places ses troupes sur leur territoire
 				int numberOfTroup=0;
