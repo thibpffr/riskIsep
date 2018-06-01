@@ -226,8 +226,13 @@ public class Main1 {
 				
 				// on fait joueur les unités
 				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
-				tabAttaque=Territory.attackTerritory(terOrigin);
-				tabDefense=Territory.defendTerritory(terCibl);
+				
+				if (Territory.attack(terOrigin,terCibl)){
+					System.out.println("Territoire conquis");
+				}
+				else{
+					System.out.println("Echec de la conquete");
+				}
 				
 				
 			}
