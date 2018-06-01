@@ -119,6 +119,11 @@ public class Main1 {
 		int terCible;// de meme qu'au dessus
 		Territory terCibl;//pareil
 		
+		
+		//variables pour les attaques
+		int[][] tabAttaque;
+		int[][]tabDefense;
+		
 			// variables intermédiaires pour effectuer les déplacements
 		int nGuns=0;
 		int nCavalry=0;
@@ -200,6 +205,31 @@ public class Main1 {
 				{
 					System.out.println("Echec du déplacement");
 				}
+			}
+			
+			if (choix==1){
+				// on est dans le cas ou le joueur choisit d'attaquer un territoire
+				// le joueur choisit le territoire origine depuis lequel il veut attaquer
+				System.out.println("choisissez le ter");
+				terOrigine= Interface.territoryChoice();
+				System.out.println("terOrigine"+terOrigine+"choisi");
+				terOrigin = territoryList[terOrigine];
+				
+				
+				
+				// le joueur choisit le territoire cible
+				java.lang.Thread.sleep(500);
+				terCible = Interface.territoryChoice();
+				System.out.println("ter"+terCible+"choisi");
+				terCibl = territoryList[terCible];
+				System.out.println("ok!");
+				
+				// on fait joueur les unités
+				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
+				tabAttaque=Territory.attackTerritory(terOrigin);
+				tabDefense=Territory.defendTerritory(terCibl);
+				
+				
 			}
 
 		
