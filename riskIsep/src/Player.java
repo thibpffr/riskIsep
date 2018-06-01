@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Player {
-	private int playerName;
+	private int playerNumber;
 	private int nSoldier=0;
 	private int nCavalry=0;
 	private int nCanon=0;
@@ -50,12 +50,12 @@ public class Player {
 	
 	
 	//-------------------  Getters & Setters  ----------------------------------------
-	public int getPlayerName() {
-		return playerName;
+	public int getPlayerNumber() {
+		return playerNumber;
 	}
 
-	public void setPlayerName(int playerName) {
-		this.playerName = playerName;
+	public void setPlayerNumber(int playerName) {
+		this.playerNumber = playerName;
 	}
 
 	public int getnSoldier() {

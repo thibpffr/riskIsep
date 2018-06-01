@@ -15,10 +15,25 @@ public class Interface {
 		StdDraw.setCanvasSize(1193,675);	
 		StdDraw.picture(0.5,0.5,"image/CarteRiskContinents.jpg");
 		for (int i=0;i<territoryList.length;i++){
-			if (getPlayerNumber(territoryList[i].getPlayerWhoControlls())==0){
+			if ((territoryList[i].getPlayerWhoControlls()).getPlayerNumber()==0){
 				StdDraw.setPenColor(StdDraw.RED);
 			}
-			StdDraw.circle((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,0.03);
+			else if ((territoryList[i].getPlayerWhoControlls()).getPlayerNumber()==1){
+				StdDraw.setPenColor(StdDraw.BLUE);
+			}
+			else if ((territoryList[i].getPlayerWhoControlls()).getPlayerNumber()==2){
+				StdDraw.setPenColor(StdDraw.GREEN);
+			}
+			else if ((territoryList[i].getPlayerWhoControlls()).getPlayerNumber()==3){
+				StdDraw.setPenColor(StdDraw.YELLOW);
+			}
+			else if ((territoryList[i].getPlayerWhoControlls()).getPlayerNumber()==4){
+				StdDraw.setPenColor(StdDraw.BLACK);
+			}
+			else {
+				StdDraw.setPenColor(StdDraw.WHITE);
+			}
+			StdDraw.filledCircle((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,0.03);
 			
 		}
 	}
