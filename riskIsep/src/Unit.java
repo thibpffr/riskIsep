@@ -23,7 +23,7 @@ public class Unit {
 			
 		}
 	}
-
+	
 	public int getNbDeplacements() {
 		return nbDeplacements;
 	}
