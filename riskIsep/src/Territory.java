@@ -234,86 +234,56 @@ public class Territory {
 	}
 	
 	public static int[][] attackTerritory(Territory terOrigine){
-			System.out.println("Choisissez les 3 unités que vous souhaiter utiliser pour attaquer");
-			int nGuns=terOrigine.getnGuns();
-			int nSoldiers=terOrigine.getnSoldiers();
-			int nCavalry=terOrigine.getnCavalry();
+		System.out.println("Choisissez les 3 unités que vous souhaiter utiliser pour attaquer");
+		int nGuns=terOrigine.getnGuns();
+		int nSoldiers=terOrigine.getnSoldiers();
+		int nCavalry=terOrigine.getnCavalry();
 
 			
-			String[] choiceTroup = {"Soldat : "+nSoldiers,"Cavalier"+nCavalry,"Canon"+nGuns};
-			String choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
-			if (choixTroupe==choiceTroup[1]) {
-				//Il faut encore choisir le nombre de soldat que l'on veut placer
-				int [][] tabResult=new int[nSoldiers][2];
-				for (int i=0;i<nSoldiers;i++){
-					tabResult[i][0]= 1 + (int)(Math.random() * 5);
-					tabResult[i][1]=2;
-				}
-				Arrays.sort(tabResult);
-				return tabResult;
+		String[] choiceTroup = {"Soldat : "+nSoldiers,"Cavalier"+nCavalry,"Canon"+nGuns};
+		String choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
+		if (choixTroupe==choiceTroup[0]) {
+			//Il faut encore choisir le nombre de soldat que l'on veut placer
+			int [][] tabResult=new int[nSoldiers][2];
+			for (int i=0;i<nSoldiers;i++){
+				tabResult[i][0]= 1 + (int)(Math.random() * 5);
+				tabResult[i][1]=2;
+			}
+			Arrays.sort(tabResult);
+			return tabResult;
 				
+		}
+		else if (choixTroupe==choiceTroup[1]) {
+			int [][] tabResult=new int[nCavalry][2];
+			for (int i=0;i<nCavalry;i++){
+				tabResult[i][0]= 2 + (int)(Math.random() * 5);
+				tabResult[i][1]=1;
 			}
-			else if (choixTroupe==choiceTroup[2]) {
-				int [][] tabResult=new int[nCavalry][2];
-				for (int i=0;i<nCavalry;i++){
-					tabResult[i][0]= 2 + (int)(Math.random() * 5);
-					tabResult[i][1]=1;
-				}
-				Arrays.sort(tabResult);
-				return tabResult;
+			Arrays.sort(tabResult);
+			return tabResult;
+		}
+		else if (choixTroupe==choiceTroup[2]) {
+			int [][] tabResult=new int[nGuns][2];
+			for (int i=0;i<nGuns;i++){
+				tabResult[i][0]= 4 + (int)(Math.random() * 5);
+				tabResult[i][1]=3;
 			}
-			else if (choixTroupe==choiceTroup[3]) {
-				int [][] tabResult=new int[nGuns][2];
-				for (int i=0;i<nGuns;i++){
-					tabResult[i][0]= 4 + (int)(Math.random() * 5);
-					tabResult[i][1]=3;
-				}
-				Arrays.sort(tabResult);
-				return tabResult;
-			}
-			else{
-				int tab[][]={{}};
-				return tab;
-			}
-			
-			
-		
+			Arrays.sort(tabResult);
+			return tabResult;
+		}
+		else{
+			int tab[][]={{}};
+			return tab;
+		}	
 	}
 	
 public static int[][] defendTerritory(Territory terCible){
 	int nGuns=terCible.getnGuns();
 	int nSoldiers=terCible.getnSoldiers();
 	int nCavalry=terCible.getnCavalry();
-	int tabResult[][] = new int[2][2]; 
-	int i=0,j=0,k=0;// i compte le nombre d'unité qui ont été ajoutées au tableau, j le nombre de type d'unités 
-	// qu'on a parcouru et k est un index
-	
-	while(i<2&&j<3){
-		while (nSoldiers>0){
-			nSoldiers--;
-			tabResult[i][0]=1 + (int)(Math.random() * 5);
-			tabResult[i][1]= 2;
-			i++;
-		}
-		j++;
-		while (nGuns>0){
-			nGuns--;
-			tabResult[i][0]= 4 + (int)(Math.random() * 5);
-			tabResult[i][1]=3;
-			i++;
-		}
-		j++;
-		while (nCavalry>0){
-			nCavalry--;
-			tabResult[i][0]=2 + (int)(Math.random() * 5);
-			tabResult[i][1]= 1;
-			i++;
-		}
-		j++;
-		
-	}
-	Arrays.sort(tabResult);
+	int tabResult[][]={{5,2},{6,1}} ;
 	return tabResult;
+	
 	
 }
 	

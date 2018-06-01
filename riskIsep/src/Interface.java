@@ -19,9 +19,8 @@ public class Interface {
 		StdDraw.clear();
 		StdDraw.setCanvasSize(1193,675);	
 		StdDraw.picture(0.5,0.5,"image/CarteRiskContinents.jpg");
-		StdDraw.filledRectangle(0.92,0.79,0.05,0.07);
-		StdDraw.filledRectangle(0.6,0.79,0.05,0.07);
-		StdDraw.filledRectangle(0.43,0.79,0.05,0.07);
+		
+		
 		for (int i=0;i<territoryList.length;i++){
 			if ((territoryList[i].getPlayerWhoControlls()).getPlayerNumber()==0){
 				StdDraw.setPenColor(StdDraw.RED);
@@ -46,7 +45,14 @@ public class Interface {
 			Font font = new Font("Arial", Font.BOLD, 10);
 			StdDraw.setFont(font);
 			StdDraw.text((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,"s :"+territoryList[i].getnSoldiers()+"c :"+territoryList[i].getnCavalry()+"g :"+territoryList[i].getnGuns());
-			
+			StdDraw.setPenColor(StdDraw.BLACK);
+			StdDraw.filledRectangle(0.92,0.79,0.05,0.07);
+			StdDraw.filledRectangle(0.92,0.6,0.05,0.07);
+			StdDraw.filledRectangle(0.92,0.43,0.05,0.07);
+			StdDraw.setPenColor(StdDraw.WHITE);
+			StdDraw.text(0.92,0.79,"Déplacer");
+			StdDraw.text(0.92,0.6,"Attaquer");
+			StdDraw.text(0.92,0.43,"Passer");
 			//"s :"+territoryList[i].getnSoldiers()
 		}
 	}
