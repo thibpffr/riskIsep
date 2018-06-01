@@ -227,7 +227,7 @@ public class Territory {
 			terCible.setnCavalry(terCible.getnCavalry()+nCavalry);
 			terCible.setnGuns(terCible.getnGuns()+nGuns);
 			terCible.setnSoldiers(terCible.getnSoldiers()+nSoldiers);
-			
+			System.out.println("succes");
 			return true;
 		}
 		

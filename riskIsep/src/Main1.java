@@ -145,7 +145,7 @@ public class Main1 {
 					territoryList[i].setPlayerWhoControlls(tableauJoueurs.get(j));
 					tableauJoueurs.get(j).controlledTerritories.add(territoryList[i].getTerritoryNumber());//on rajoute le territoire à la liste des territoires controllés par le joueur.
 					territoryList[i].setnSoldiers(1);
-					StdDraw.text(0.5,0.9,"Le territoire "+territoryList[i].getTerritoryNumber()+" a ete associé au joueur"+tableauJoueurs.get(j).getPlayerNumber());
+					System.out.println("Le territoire "+territoryList[i].getTerritoryNumber()+" a ete associé au joueur"+tableauJoueurs.get(j).getPlayerNumber());
 					j++;
 					if (j>=nbJoueurs) {
 						j=0;
@@ -163,7 +163,7 @@ public class Main1 {
 		//Definition du nombre de Troupe de depart en fonction du nombre de joueur
 		for (int i =0; i<tableauJoueurs.size();i++) {
 			if (tableauJoueurs.size()==2) {
-				troupDepart=11;
+				troupDepart=5;
 			}
 			else if (tableauJoueurs.size()==3) {
 				troupDepart=35;
@@ -185,13 +185,13 @@ public class Main1 {
 				for (int i =0; i<tableauJoueurs.size();i++) {
 					playerTurn=tableauJoueurs.get(i);
 					
-					StdDraw.text(0.5,0.9,"c'est le joueur"+i);
+					System.out.println("c'est le joueur"+i);
 					numberOfTroup=troupDepart;
 					while(numberOfTroup>0) {
-						StdDraw.text(0.5,0.9,"Choisir où placer des troupes");
+						System.out.println("Choisir où placer des troupes");
 						terCible= interfMap.territoryChoice();
 						terCibl=territoryList[terCible];
-						StdDraw.text(0.5,0.9,"Territoire "+terCibl.getTerritoryNumber());
+						System.out.println("Territoire "+terCibl.getTerritoryNumber());
 						if (terCibl.getPlayerWhoControlls()==playerTurn) {
 								troupUsed=Territory.placerTroupe(numberOfTroup, terCibl);
 						}
@@ -202,12 +202,12 @@ public class Main1 {
 				}
 				for(int player=0;player<tableauJoueurs.size();player++) {
 					playerTurn=tableauJoueurs.get(player);
-					StdDraw.text(0.5,0.9,"c'est le tour du Joueur "+playerTurn.getPlayerNumber());
+					System.out.println("c'est le tour du Joueur "+playerTurn.getPlayerNumber());
 		
 					
 					java.lang.Thread.sleep(300);
 					//interfMap.positionSouris();
-					StdDraw.text(0.5,0.9,"que faire?");
+					System.out.println("que faire?");
 					choix = interfMap.actionChoice();
 					if (choix==-1) {
 						while (choix==-1) {
@@ -218,47 +218,50 @@ public class Main1 {
 		// s'il veut déplacer des troupes 
 			
 					if (choix==0)
+					
 				
 			{
 				// le joueur choisit le territoire origine depuis lequel il veut déplacer des armées
-						StdDraw.text(0.5,0.9,"choix = deplacement");
+						System.out.println("choix = deplacement");
 						java.lang.Thread. sleep(1000);
-						StdDraw.text(0.5,0.9,"choisir un territoire");
+						System.out.println("choisir un territoire");
 						terOrigine= interfMap.territoryChoice();
 						terOrigin=territoryList[terOrigine];
-						StdDraw.text(0.5,0.9,"territoire "+terOrigin.getTerritoryNumber());
-						StdDraw.text(0.5,0.9,"le nombre de soldats sur le ter est "+terOrigin.getnSoldiers());
+						System.out.println("territoire "+terOrigin.getTerritoryNumber());
+						System.out.println("le nombre de soldats sur le ter est "+terOrigin.getnSoldiers());
 				
-						StdDraw.text(0.5,0.9,"choisir un territoire");
+						System.out.println("choisir un territoire");
 						
 				// le joueur choisit le territoire cible
 						if (terOrigin.getPlayerWhoControlls()==playerTurn) {
 							terCible = interfMap.territoryChoice();
 							terCibl=territoryList[terCible];
-							StdDraw.text(0.5,0.9,"territoire "+terCibl.getTerritoryNumber());
+							System.out.println("territoire "+terCibl.getTerritoryNumber());
 							//Le joueur choisit le nombre d'armées à déplacer 
 							int[] unitTable = Territory.chooseUnit(terOrigin);
-							nGuns= unitTable[0];
+							nGuns= unitTable[2];
 							nCavalry= unitTable[1];
-							nSoldiers= unitTable[2];
+							nSoldiers= unitTable[0];
 	
 				
 				
 				if(Territory.moveArmy(terOrigin,terCibl,nGuns,nCavalry,nSoldiers))
 					{
-						StdDraw.text(0.5,0.9,"Le déplacement a été effectué");
+						System.out.println("Le déplacement a été effectué");
 					}
 				
 				else
 				{
-					StdDraw.text(0.5,0.9,"Echec du déplacement");
+					System.out.println("Echec du déplacement");
 				}
 						}
 						else {
-							StdDraw.text(0.5,0.9,"ce territoire n'es pas à toi");
+							System.out.println("ce territoire n'es pas à toi");
 						}
 			}
-					StdDraw.text(0.5,0.9,"que faire?");
+					// reaffichage de la carte avec les modifs effectuées
+					interfMap.ecranCarte(territoryList);
+					System.out.println("que faire?");
 					choix = interfMap.actionChoice();
 					if(choix==-1) {
 						while(choix==-1) {
@@ -270,9 +273,9 @@ public class Main1 {
 			if (choix==1){
 				// on est dans le cas ou le joueur choisit d'attaquer un territoire
 				// le joueur choisit le territoire origine depuis lequel il veut attaquer
-				StdDraw.text(0.5,0.9,"choisissez le ter");
+				System.out.println("choisissez le ter");
 				terOrigine= interfMap.territoryChoice();
-				StdDraw.text(0.5,0.9,"terOrigine"+terOrigine+"choisi");
+				System.out.println("terOrigine"+terOrigine+"choisi");
 				terOrigin = territoryList[terOrigine];
 				
 				
@@ -280,18 +283,18 @@ public class Main1 {
 				// le joueur choisit le territoire cible
 				java.lang.Thread.sleep(500);
 				terCible = interfMap.territoryChoice();
-				StdDraw.text(0.5,0.9,"ter"+terCible+"choisi");
+				System.out.println("ter"+terCible+"choisi");
 				terCibl = territoryList[terCible];
-				StdDraw.text(0.5,0.9,"ok!");
+				System.out.println("ok!");
 				
 				// on fait joueur les unités
 				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
 				
 				if (Territory.attack(terOrigin,terCibl)){
-					StdDraw.text(0.5,0.9,"Territoire conquis");
+					System.out.println("Territoire conquis");
 				}
 				else{
-					StdDraw.text(0.5,0.9,"Echec de la conquete");
+					System.out.println("Echec de la conquete");
 				}
 				
 			}
