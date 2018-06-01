@@ -356,6 +356,7 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			for ( int i=0;i<tabAttaque.length;i++){
 				if (tabAttaque[i][0]!=0){
 					ajouterUnite(terCible, tabAttaque[i][1]);
+					tuerUnite(terOrigine,tabAttaque[i][1]);
 				}
 			}
 			return true;
