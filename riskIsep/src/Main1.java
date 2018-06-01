@@ -185,7 +185,7 @@ public class Main1 {
 				for (int i =0; i<tableauJoueurs.size();i++) {
 					playerTurn=tableauJoueurs.get(i);
 					
-					System.out.println("c'est le joueur"+i);
+					Interface.consoleVirt( interfMap, territoryList,"c'est le joueur"+i);
 					numberOfTroup=troupDepart;
 					while(numberOfTroup>0) {
 						System.out.println("Choisir où placer des troupes");

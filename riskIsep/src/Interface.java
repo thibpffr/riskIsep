@@ -47,9 +47,10 @@ public class Interface {
 		}
 	}
 	
-	public static void consoleVirt(Interface interfMap,Territory[] territoryList,double x,double y, String k){
+	public static void consoleVirt(Interface interfMap,Territory[] territoryList, String k){
+		StdDraw.clear();
 		interfMap.ecranCarte(territoryList);
-		StdDraw.text(x,y,k);
+		StdDraw.text(0.5,0.9,k);
 	}
 	
 	
