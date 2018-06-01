@@ -214,20 +214,31 @@ public class Main {
 				
 					}
 				
-					/*else if (choix==1)
+					else if (choix==1)
 					{
 					// nous sommes dans le cas d'une attaque 
 					// choix du territoire depuis lequel on attaque
 					// choix du territoire a attaquer 
 					// choix des unités attaquantes
-						terOrigin= Interface.territoryChoice();
-						if (Player.isControlledTerritory(terOrigine.getTerritoryNumber())) {
-							Territory terCible = Interface.territoryChoice();
-							int nGunsAttaquant = terOrigine.getnGuns();
-							int nCavalryAttaquant = terOrigine.getnCavalry();
-							int nSoldiersAttaquant = terOrigine.getnSoldiers();
+						int terOrigine= Interface.territoryChoice();
+						for (int i=0; i<territoryList.length;i++) {
+							if (terOrigine==i) {
+								terOrigin = territoryList[i];
+							}
+						}
+						if (Player.isControlledTerritory(terOrigin.getTerritoryNumber())) {
+							int terCible = Interface.territoryChoice();
+							for (int i=0; i<territoryList.length;i++) {
+								if (terCible==i) {
+									terCibl = territoryList[i];
+								}
+							}
+							int []unitTable = new int[3];
+							int nGunsAttaquant = unitTable[1];
+							int nCavalryAttaquant = unitTable[2];
+							int nSoldiersAttaquant = unitTable[3];
 					
-						if (Territory.attackTerritoryCheck(terOrigine,terCible,nGunsAttaquant, nCavalryAttaquant,nSoldiersAttaquant ))
+						if (Territory.attackTerritoryCheck(terOrigin,terCibl,nGunsAttaquant, nCavalryAttaquant,nSoldiersAttaquant ))
 						{
 						
 						// les unités jouent
@@ -250,7 +261,7 @@ public class Main {
 						{
 							victoire=true;
 						}
-					}*/
+					}
 				}
 		
 			}
@@ -259,3 +270,24 @@ public class Main {
 	}
 		
 }
+/*
+ public static void placerTroupe(int numberOfTroup,Territory terCible) {
+		String[] choiceTroup = {"Soldat (-1)","Cavalier(-3)","Canon(-7)","Arreter"};
+		String choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
+		if (choixTroupe==choiceTroup[1]) {
+			//Il faut encore choisir le nombre de soldat que l'on veut placer
+			
+			terCible.setnSoldiers(terCible.getnSoldiers()+1);
+			numberOfTroup--;
+		}
+		else if (choixTroupe==choiceTroup[2]) {
+			terCible.setnCavalry(terCible.getnCavalry()+1);
+			numberOfTroup=numberOfTroup-3;
+		}
+		else if (choixTroupe==choiceTroup[3]) {
+			terCible.setnGuns(terCible.getnGuns()+1);
+			numberOfTroup=numberOfTroup-7;
+		}
+		if (choixTroupe==choiceTroup[4]) {
+		}
+	}*/
