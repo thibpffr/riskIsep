@@ -15,9 +15,13 @@ public class Interface {
 	
 	public void ecranCarte(Territory[] territoryList)
 	{
+		
 		StdDraw.clear();
 		StdDraw.setCanvasSize(1193,675);	
 		StdDraw.picture(0.5,0.5,"image/CarteRiskContinents.jpg");
+		StdDraw.filledRectangle(0.92,0.79,0.05,0.07);
+		StdDraw.filledRectangle(0.6,0.79,0.05,0.07);
+		StdDraw.filledRectangle(0.43,0.79,0.05,0.07);
 		for (int i=0;i<territoryList.length;i++){
 			if ((territoryList[i].getPlayerWhoControlls()).getPlayerNumber()==0){
 				StdDraw.setPenColor(StdDraw.RED);
@@ -208,10 +212,10 @@ public class Interface {
 		{
 			return 0;
 		}
-		/*else if((sourisX > 0.86 && sourisX < 0.97) && (sourisY > 0.54 && sourisY < 0.67))//Attaque
+		else if((sourisX > 0.86 && sourisX < 0.97) && (sourisY > 0.54 && sourisY < 0.67))//Attaque
 		{
 			return 1;
-		}*/
+		}
 		else if((sourisX > 0.86 && sourisX < 0.97) && (sourisY > 0.37 && sourisY < 0.5))//Fin de tour
 		{
 			return 2;
