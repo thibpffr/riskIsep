@@ -304,6 +304,7 @@ public class Main1 {
 				else{
 					System.out.println("Echec de la conquete");
 				}
+				interfMap.ecranCarte(territoryList);
 				
 			}
 			if(player==tableauJoueurs.size()) {

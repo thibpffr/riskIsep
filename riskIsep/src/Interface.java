@@ -17,7 +17,7 @@ public class Interface {
 	{
 		
 		StdDraw.clear();
-		StdDraw.setCanvasSize(1193,675);	
+		StdDraw.setCanvasSize(800,550);	
 		StdDraw.picture(0.5,0.5,"image/CarteRiskContinents.jpg");
 		
 		
