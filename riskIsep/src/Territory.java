@@ -243,26 +243,29 @@ public class Territory {
 		String[] choiceTroup={"Soldat : "+nSoldiers,"Cavalier"+nCavalry,"Canon"+nGuns,"Attaquer Maintenant"};
 		String choixTroupe="";
 		// tab[i] pour le type d'armée :1 pour le soldat, 2 pour le canon et 3 pour le cavalier
-		while((n<2)||(choixTroupe!=choiceTroup[3])){
+		while((n<3)&&(choixTroupe!=choiceTroup[3])){
 			
 			choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
 			if (choixTroupe!=choiceTroup[1]){
-				result.add(n,(int)Math.random()*6+1);
-				result.add(n+1,1);
+				result.add(2);
+				result.add((int)(Math.random()*6)+1);
+				
 				nSoldiers--;
 				n++;
 				
 			}
 			else if (choixTroupe!=choiceTroup[2]){
-				result.add(n,(int)Math.random()*7+2);
-				result.add(n+1,3);
+				result.add(1);
+				result.add((int)(Math.random()*7)+2);
+				
 				nCavalry--;
 				n++;
 				
 			}
 			else{
-				result.add(n,(int)Math.random()*9+4);
-				result.add(n+1,2);
+				result.add(3);
+				result.add((int)(Math.random()*9)+4);
+				
 				nGuns--;
 				n++;
 				
@@ -281,22 +284,26 @@ public static ArrayList<Integer> defendTerritory(Territory terCible){
 	ArrayList<Integer> result = new ArrayList<Integer>();
 	int n=0;
 	
-	while ((n<3)||((nGuns==0)&&(nSoldiers==0)&&(nCavalry==0))){
+	while ((n<2)||((nGuns==0)&&(nSoldiers==0)&&(nCavalry==0))){
 		if (nSoldiers>0){
-			result.add(n,(int)Math.random()*6+1);
-			result.add(n+1,1);
+			result.add(2);
+			result.add(1+(int)(Math.random()*6));
+			
+		
 			nSoldiers--;
 			n++;
 		}
 		else if (nGuns>0){
-			result.add(n,(int)Math.random()*9+4);
-			result.add(n+1,2);
+			result.add(3);
+			result.add(4+(int)(Math.random()*9));
+			
 			nGuns--;
 			n++;
 		}
 		else{
-			result.add(n,(int)Math.random()*7+2);
-			result.add(n+1,3);
+			result.add(1);
+			result.add(n,2+(int)(Math.random()*7));
+			
 			nCavalry--;
 			n++;
 		}
@@ -311,20 +318,21 @@ public static ArrayList<Integer> sortArrayList(ArrayList<Integer> array){
 	int index=0;
 	ArrayList<Integer> result = new ArrayList<Integer>(); 
 	
-		for (int i=1;i<array.size();i=i+2){
-			if (array.get(i)>max){
-				max=array.get(i);
-				index=i;
+		if (array.size()==4){
+			if (array.get(1)>array.get(3)){
+				return array;
+			}
+			else{
+				result.add(array.get(2));
+				result.add(array.get(3));
+				result.add(array.get(0));
+				result.add(array.get(1));
+				return result;
 			}
 		}
-		result.add(array.get(index));
-		result.add(array.get(index-1));
-		array.remove(index);
-		array.remove(index-1);
-		max=0;
-		n++;
-	
-	return result;
+		else{
+			return array;
+		}	
 }
 	
 
@@ -334,46 +342,71 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	tabAttaque=attackTerritory(terOrigine);
 	ArrayList<Integer> tabDefense = new ArrayList<Integer>(); 
 	tabDefense=defendTerritory(terCible);
+	System.out.println("TabAttaque");
+	for (int i=0;i<tabAttaque.size();i=i+2){
+		System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
+	}
+	System.out.println("TabDef");
+	System.out.println(tabDefense.size());
+	for (int i=0;i<tabDefense.size();i=i+2){
+		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
+	}
 	
 	tabAttaque=sortArrayList(tabAttaque);
 	tabDefense=sortArrayList(tabDefense);
-	
+	System.out.println("TabAttaque");
+	for (int i=0;i<tabAttaque.size();i=i+2){
+		System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
+	}
+	System.out.println("TabDef");
+	for (int i=0;i<tabDefense.size();i=i+2){
+		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
+	}
 	
 	
 	// comparaison
-	for (int i=1;i<Math.min(tabAttaque.size(),tabDefense.size());i=i+2){
+	int taille=Math.min(tabAttaque.size(),tabDefense.size());
+	int i=1;
+	while (i<taille){
+	
 		if (tabAttaque.get(i)>tabDefense.get(i)){
 			tuerUnite(terCible,tabDefense.get(i-1));
-			tabDefense.remove(i);
-			tabDefense.remove(i-1);
+			tabDefense.set(i,0);
+			//tabDefense.remove(i);
+			//tabDefense.remove(i-1);
 		}
 		
 		else if (tabAttaque.get(i)<tabDefense.get(i)){
 			
 			tuerUnite(terOrigine,tabAttaque.get(i-1));
-			tabAttaque.remove(i);
-			tabAttaque.remove(i-1);
+			tabAttaque.set(i,0);
+			//tabAttaque.remove(i);
+			//tabAttaque.remove(i-1);
 		}
 		else{// dans le cas d'une egalité on regarde les priorités d'attaque
 			if (tabDefense.get(i-1)>tabAttaque.get(i-1)){
-				
+				tabAttaque.set(i,0);
 				tuerUnite(terOrigine,tabAttaque.get(i-1));
-				tabAttaque.remove(i);
-				tabAttaque.remove(i-1);
+				//tabAttaque.remove(i);
+				//tabAttaque.remove(i-1);
 			}
 			else  if (tabDefense.get(i-1)<tabAttaque.get(i-1)){
+				tabDefense.set(i,0);
 				tuerUnite(terCible,tabDefense.get(i-1));
-				tabDefense.remove(i);
-				tabDefense.remove(i-1);
+				//tabDefense.remove(i);
+				//tabDefense.remove(i-1);
 			}
 			else{// priorité à l'attaque si toutes égalités
 				
 				tuerUnite(terCible,tabDefense.get(i-1));
-				tabDefense.remove(i);
-				tabDefense.remove(i-1);
+				tabDefense.set(i,0);
+				//tabDefense.remove(i);
+				//tabDefense.remove(i-1);
 			}
 			
+			
 		}
+		i=i+2;
 	}
 		// a partir de ce momment il faut compter les zeros pour savoir qui a gagné et agir en csq (enlever les morts)
 		if (terCible.getTerritoryUnits()==0){
@@ -381,12 +414,12 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			// on change le propriétaire 
 			terCible.setPlayerWhoControlls(terOrigine.getPlayerWhoControlls());
 			// on met les unités qu'il reste sur le nouveau ter
-			for ( int i=0;i<tabAttaque.size();i++){
-				for (int j=0;j<tabAttaque.size();j++){
-					ajouterUnite(terCible, tabAttaque.get(j));
-					tuerUnite(terOrigine,tabAttaque.get(j));
-					tabAttaque.remove(j);
-					tabAttaque.remove(j+1);
+			for (  i=1;i<tabAttaque.size();i++){
+			
+					if (tabAttaque.get(i)!=0){
+					ajouterUnite(terCible, tabAttaque.get(i-1));
+					tuerUnite(terOrigine,tabAttaque.get(i-1));
+					
 				}
 			}
 			return true;
@@ -396,15 +429,19 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 
 
 	public static void tuerUnite(Territory ter,int num){
+		int i=0;
 		if (num==1){
-			ter.setnCavalry(ter.getnCavalry()-1);
+			i=ter.getnCavalry();
+			ter.setnCavalry(i-1);
 			
 		}
 		else if (num==2){
-			ter.setnSoldiers(ter.getnGuns()-1);
+			i=ter.getnSoldiers();
+			ter.setnSoldiers(i-1);
 		}
 		else{
-			ter.setnGuns(ter.getnGuns()-1);
+			i=ter.getnGuns();
+			ter.setnGuns(i-1);
 		}
 		System.out.println("un"+num+" a été tué !"+ "du territoire"+ter.getTerritoryNumber());
 	}

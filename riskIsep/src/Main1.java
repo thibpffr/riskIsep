@@ -219,6 +219,7 @@ public class Main1 {
 				choix = interfMap.actionChoice();
 				System.out.println("à la ligne "+220+" choix="+choix);
 				if (choix==-1) {
+					// dans le cas ou on ne clique pas sur une action
 					while (choix==-1) {
 					choix = interfMap.actionChoice();
 					}
@@ -278,7 +279,7 @@ public class Main1 {
 				
 			
 			
-			if (choix==1){
+				else if (choix==1){
 				// on est dans le cas ou le joueur choisit d'attaquer un territoire
 				// le joueur choisit le territoire origine depuis lequel il veut attaquer
 				System.out.println("choisissez le ter");
