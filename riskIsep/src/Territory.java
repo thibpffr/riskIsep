@@ -240,11 +240,14 @@ public class Territory {
 		int nCavalry=terOrigine.getnCavalry();
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		int n=0;// nombre d'unités affectés au combat
-		String[] choiceTroup={"Soldat : "+nSoldiers,"Cavalier"+nCavalry,"Canon"+nGuns,"Attaquer Maintenant"};
+		String[] choiceTroup={"1","3","2","1"};
 		
 		String choixTroupe="";
 		// tab[i] pour le type d'armée :1 pour le soldat, 2 pour le canon et 3 pour le cavalier
 		while((n<3)&&(choixTroupe!=choiceTroup[3])){
+			String[]choice2={"Soldat : "+nSoldiers,"Cavalier : "+nCavalry,"Canon : "+nGuns,"Attaquer Maintenant"};
+			choiceTroup=choice2;
+			
 			
 			choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
 			if ((choixTroupe==choiceTroup[0])&&(nSoldiers>0)){
@@ -306,7 +309,7 @@ public static ArrayList<Integer> defendTerritory(Territory terCible){
 			nGuns--;
 			n++;
 		}
-		else{
+		else if (nCavalry>0){
 			result.add(1);
 			result.add(n,2+(int)(Math.random()*7));
 			
@@ -320,28 +323,51 @@ public static ArrayList<Integer> defendTerritory(Territory terCible){
 }
 	
 public static ArrayList<Integer> sortArrayList(ArrayList<Integer> array){
-	int max=0,n=0;
+	int max=array.get(1),n=0;
 	int index=0;
-	int[] tab=new int [(array.size())/2];
-	
-	return array;
+	ArrayList<Integer> result = new ArrayList<Integer>();
+	int i=1;
+	int taille=array.size();
+	while (i<=taille/2){
+		max=array.get(1);
+		for (int j=1;j<array.size();j=j+2){
+			if (array.get(j)>=max){
+				max=array.get(j);
+				index=j;
+			}
 		
-	
-}
-	
-public static int max(int [] tab){
-	int max=tab[0],index=0;
-	for (int i=0;i<tab.length;i++){
-		if (tab[i]>max){
-			max=tab[i];
-			index=i;
+			
 		}
 		
+		result.add(array.get(index-1));
+		result.add(array.get(index));
+		//System.out.println("sort");
+		//System.out.println("j'ajoute"+array.get(index)+" et "+ array.get(index-1));
+		
+		array.remove(index-1);
+		array.remove(index-1);
+		i++;
+		
 	}
-	return index;
+	return result;
+		
+	
 }
+		
+	
+
+	
 
 
+public static int[] max(int[] array){
+	int taille=array.length;
+	int [] result=new int[taille];
+	int max=array[0];
+	for (int i=0;i<taille;i++){
+		
+	}
+	
+}
 public static boolean attack(Territory terOrigine,Territory terCible){
 	ArrayList<Integer> tabAttaque = new ArrayList<Integer>(); 
 	tabAttaque=attackTerritory(terOrigine);
@@ -415,16 +441,22 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 		i=i+2;
 	}
 		// a partir de ce momment il faut compter les zeros pour savoir qui a gagné et agir en csq (enlever les morts)
-		if (terCible.getTerritoryUnits()==0){
+		if (terCible.getTerritoryUnits()<=0){
 			// dans ce cas le territoire est conquis
 			// on change le propriétaire 
+			terCible.setnCavalry(0);
+			terCible.setnGuns(0);
+			terCible.setnSoldiers(0);
 			terCible.setPlayerWhoControlls(terOrigine.getPlayerWhoControlls());
 			// on met les unités qu'il reste sur le nouveau ter
 			for (  i=1;i<tabAttaque.size();i++){
 			
 					if (tabAttaque.get(i)!=0){
 					ajouterUnite(terCible, tabAttaque.get(i-1));
+					
 					tuerUnite(terOrigine,tabAttaque.get(i-1));
+					System.out.println("tab="+tabAttaque.get(i-1));
+					
 					
 				}
 			}
