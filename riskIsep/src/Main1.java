@@ -161,7 +161,7 @@ public class Main1 {
 				
 		// creation de la carte et de l'interface		
 		interfMap = new Interface(800,550);
-		interfMap.ecranCarte(territoryList);
+		//interfMap.ecranCarte(territoryList);
 		playerTurn=tableauJoueurs.get(0);
 		int troupDepart=0;
 		//Definition du nombre de Troupe de depart en fonction du nombre de joueur
@@ -192,10 +192,10 @@ public class Main1 {
 			Interface.consoleVirt( interfMap, territoryList,"c'est le joueur"+i);
 			numberOfTroup=troupDepart;
 			while(numberOfTroup>0) {
-				System.out.println("Choisir où placer des troupes");
+				System.out.println("Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
 				terCible= interfMap.territoryChoice();
 				terCibl=territoryList[terCible];
-				System.out.println("Territoire "+terCibl.getTerritoryNumber());
+				System.out.println("Vous avez choisi le territoire "+terCibl.getTerritoryNumber());
 				if (terCibl.getPlayerWhoControlls()==playerTurn) {
 					troupUsed=Territory.placerTroupe(numberOfTroup, terCibl);
 				}
@@ -206,16 +206,18 @@ public class Main1 {
 		}
 		// ####### La partie commence pour de vrai#######
 		for(int player=0;player<tableauJoueurs.size();player++) {
-			playerTurn=tableauJoueurs.get(player);
-			System.out.println("c'est le tour du Joueur "+playerTurn.getPlayerNumber());
-			choix=interfMap.actionChoice();
-			System.out.println("à la ligne "+212+" choix="+choix);
+			choix=-1;
 			// pour etre sur de rentrer dans le while
 			while(choix!=2) {
-					System.out.println("à la ligne "+214+" choix="+choix);
+				playerTurn=tableauJoueurs.get(player);
+				int nb=(playerTurn.getPlayerNumber()+1);
+				System.out.println("c'est le tour du Joueur "+nb);
+				
+				//System.out.println("à la ligne "+215+" choix="+choix);
+				
 				java.lang.Thread.sleep(300);
 				//interfMap.positionSouris();
-				System.out.println("Joueur "+player+1+" Que voulez vous faire ?");
+				System.out.println("Joueur "+(player+1)+" Que voulez vous faire ?");
 				choix = interfMap.actionChoice();
 				System.out.println("à la ligne "+220+" choix="+choix);
 				if (choix==-1) {
@@ -269,7 +271,7 @@ public class Main1 {
 					}
 				}
 				// reaffichage de la carte avec les modifs effectuées
-				interfMap.ecranCarte(territoryList);
+				//interfMap.ecranCarte(territoryList);
 			
 				//choix = interfMap.actionChoice();
 				//if(choix==-1) {
@@ -282,31 +284,34 @@ public class Main1 {
 				if (choix==1){
 				// on est dans le cas ou le joueur choisit d'attaquer un territoire
 				// le joueur choisit le territoire origine depuis lequel il veut attaquer
-				System.out.println("choisissez le ter");
+				System.out.println("choisissez le Territoire depuis lequel vous voulez lancer l'attaque");
 				terOrigine= interfMap.territoryChoice();
-				System.out.println("terOrigine"+terOrigine+"choisi");
-				terOrigin = territoryList[terOrigine];
 				
+				terOrigin = territoryList[terOrigine];
+				System.out.println("Vous avez chosi le territoire " +terOrigin.getTerritoryNumber());
 				
 				
 				// le joueur choisit le territoire cible
 				java.lang.Thread.sleep(500);
+				System.out.println("choisissez le Territoire vers lequel vous voulez lancer l'attaque");
 				terCible = interfMap.territoryChoice();
-				System.out.println("ter"+terCible+"choisi");
+				
 				terCibl = territoryList[terCible];
-				System.out.println("ok!");
+				System.out.println("Vous avez chosi le territoire " +terCibl.getTerritoryNumber());
 				
 				// on fait joueur les unités
 				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
 				
 				if (Territory.attack(terOrigin,terCibl)){
 					System.out.println("Territoire conquis");
+					interfMap.ecranCarte(territoryList);
 				}
 				
 				else{
 					System.out.println("Echec de la conquete");
+					interfMap.ecranCarte(territoryList);
 				}
-				interfMap.ecranCarte(territoryList);
+				//interfMap.ecranCarte(territoryList);
 				
 			}
 			if(player==tableauJoueurs.size()) {

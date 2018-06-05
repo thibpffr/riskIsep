@@ -47,8 +47,8 @@ public class Territory {
 			terCible.setnSoldiers(terCible.getnSoldiers()+choixnbSoldat);
 			numberOfTroup=numberOfTroup-choixnbSoldat;
 			troupUsed=choixnbSoldat;
-			System.out.println("Il y sur le territoire: "+ terCible.getnSoldiers()+" soldats "+terCible.getnCavalry()+" cavaliers "+ terCible.getnGuns()+"canons");
-			System.out.println("il reste "+numberOfTroup+" troupe à placer");
+			System.out.println("Il y maintenant sur le territoire "+terCible.getTerritoryNumber()+" : "+ terCible.getnSoldiers()+" soldats "+terCible.getnCavalry()+" cavaliers "+ terCible.getnGuns()+" canons");
+			System.out.println("Il vous reste "+numberOfTroup+" troupe à placer");
 		}
 		else if (choixTroupe==choiceTroup[1]) {
 			String[] choicenbCavalier = new String[numberOfTroup+1];
@@ -359,15 +359,7 @@ public static ArrayList<Integer> sortArrayList(ArrayList<Integer> array){
 	
 
 
-public static int[] max(int[] array){
-	int taille=array.length;
-	int [] result=new int[taille];
-	int max=array[0];
-	for (int i=0;i<taille;i++){
-		
-	}
-	
-}
+
 public static boolean attack(Territory terOrigine,Territory terCible){
 	ArrayList<Integer> tabAttaque = new ArrayList<Integer>(); 
 	tabAttaque=attackTerritory(terOrigine);
