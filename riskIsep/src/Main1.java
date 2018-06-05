@@ -302,7 +302,7 @@ public class Main1 {
 				if (Territory.attack(terOrigin,terCibl)){
 					System.out.println("Territoire conquis");
 				}
-				//ll
+				
 				else{
 					System.out.println("Echec de la conquete");
 				}
