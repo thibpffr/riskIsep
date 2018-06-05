@@ -279,7 +279,7 @@ public class Main1 {
 				
 			
 			
-				else if (choix==1){
+				if (choix==1){
 				// on est dans le cas ou le joueur choisit d'attaquer un territoire
 				// le joueur choisit le territoire origine depuis lequel il veut attaquer
 				System.out.println("choisissez le ter");

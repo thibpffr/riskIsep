@@ -241,12 +241,13 @@ public class Territory {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		int n=0;// nombre d'unités affectés au combat
 		String[] choiceTroup={"Soldat : "+nSoldiers,"Cavalier"+nCavalry,"Canon"+nGuns,"Attaquer Maintenant"};
+		
 		String choixTroupe="";
 		// tab[i] pour le type d'armée :1 pour le soldat, 2 pour le canon et 3 pour le cavalier
 		while((n<3)&&(choixTroupe!=choiceTroup[3])){
 			
 			choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
-			if (choixTroupe!=choiceTroup[1]){
+			if ((choixTroupe==choiceTroup[0])&&(nSoldiers>0)){
 				result.add(2);
 				result.add((int)(Math.random()*6)+1);
 				
@@ -254,7 +255,7 @@ public class Territory {
 				n++;
 				
 			}
-			else if (choixTroupe!=choiceTroup[2]){
+			else if ((choixTroupe==choiceTroup[1])&&(nCavalry>0)){
 				result.add(1);
 				result.add((int)(Math.random()*7)+2);
 				
@@ -262,7 +263,7 @@ public class Territory {
 				n++;
 				
 			}
-			else{
+			else if ((choixTroupe==choiceTroup[2])&&(nGuns>0)){
 				result.add(3);
 				result.add((int)(Math.random()*9)+4);
 				
@@ -270,11 +271,16 @@ public class Territory {
 				n++;
 				
 			}
+			else{
+				System.out.println("Ajout impossible");
+			}
 			System.out.println("n="+n);
+		
+		
+				
 		}
 		return result;
-				
-	}
+}
 	
 	
 public static ArrayList<Integer> defendTerritory(Territory terCible){
@@ -316,25 +322,24 @@ public static ArrayList<Integer> defendTerritory(Territory terCible){
 public static ArrayList<Integer> sortArrayList(ArrayList<Integer> array){
 	int max=0,n=0;
 	int index=0;
-	ArrayList<Integer> result = new ArrayList<Integer>(); 
+	int[] tab=new int [(array.size())/2];
 	
-		if (array.size()==4){
-			if (array.get(1)>array.get(3)){
-				return array;
-			}
-			else{
-				result.add(array.get(2));
-				result.add(array.get(3));
-				result.add(array.get(0));
-				result.add(array.get(1));
-				return result;
-			}
-		}
-		else{
-			return array;
-		}	
+	return array;
+		
+	
 }
 	
+public static int max(int [] tab){
+	int max=tab[0],index=0;
+	for (int i=0;i<tab.length;i++){
+		if (tab[i]>max){
+			max=tab[i];
+			index=i;
+		}
+		
+	}
+	return index;
+}
 
 
 public static boolean attack(Territory terOrigine,Territory terCible){
@@ -343,6 +348,7 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	ArrayList<Integer> tabDefense = new ArrayList<Integer>(); 
 	tabDefense=defendTerritory(terCible);
 	System.out.println("TabAttaque");
+	
 	for (int i=0;i<tabAttaque.size();i=i+2){
 		System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
 	}
