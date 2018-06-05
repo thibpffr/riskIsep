@@ -160,14 +160,14 @@ public class Main1 {
 				
 				
 		// creation de la carte et de l'interface		
-		interfMap = new Interface(1080,720);
+		interfMap = new Interface(800,550);
 		interfMap.ecranCarte(territoryList);
 		playerTurn=tableauJoueurs.get(0);
 		int troupDepart=0;
 		//Definition du nombre de Troupe de depart en fonction du nombre de joueur
 		for (int i =0; i<tableauJoueurs.size();i++) {
 			if (tableauJoueurs.size()==2) {
-				troupDepart=5;
+				troupDepart=10;
 			}
 			else if (tableauJoueurs.size()==3) {
 				troupDepart=35;
