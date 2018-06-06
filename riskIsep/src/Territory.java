@@ -385,25 +385,25 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	tabDefense=defendTerritory(terCible);
 	System.out.println("TabAttaque");
 	
-	for (int i=0;i<tabAttaque.size();i=i+2){
+	/*for (int i=0;i<tabAttaque.size();i=i+2){
 	System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
 	}
 	System.out.println("TabDef");
 	System.out.println(tabDefense.size());
 	for (int i=0;i<tabDefense.size();i=i+2){
 		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
-	}
+	}*/
 	
 	tabAttaque=sortArrayList(tabAttaque);
 	tabDefense=sortArrayList(tabDefense);
-	System.out.println("TabAttaque");
+	/*System.out.println("TabAttaque");
 	for (int i=0;i<tabAttaque.size();i=i+2){
 		System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
 	}
 	System.out.println("TabDef");
 	for (int i=0;i<tabDefense.size();i=i+2){
 		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
-	}
+	}*/
 	
 	
 	

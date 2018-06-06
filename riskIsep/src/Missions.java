@@ -12,17 +12,29 @@ public class Missions {
 	private int nbRegionControlled=0;
 	private String nameOfControlledRegion="";
 	private boolean mission2Armies;
-	public static Missions [] missionTab;
+	public static Missions [] missionTab=new Missions[1];
 
 	
 	
-public boolean isMissionSuceeded(Missions m,Player p){
+
+	//mission1.setNbTerritoriesControlled(42);
+	
+	
+	
+public static boolean isMissionSuceeded(Player p){
+	ArrayList<Integer> ter = new ArrayList<Integer>(); 
+	ter= p.getControlledTerritories();
+	Missions m=p.getPlayerMission();
+	if (ter.size()>=m.getNbTerritoriesControlled()){
+		return true;
+	}
+	return false;
 		
 }
 
 public boolean missionDeletePlayer(Missions m, Player pAttaquant, Player pDefendant){
 	if (pDefendant.getControlledTerritories().size()==0){
-		System.out.println("La mission du Player"+pAttaquant.getPlayerName()+" est reussie");
+		System.out.println("La mission du Player"+pAttaquant.getPlayerNumber()+" est reussie");
 		return true;
 	}
 	return false;
@@ -31,7 +43,7 @@ public boolean missionDeletePlayer(Missions m, Player pAttaquant, Player pDefend
 public boolean missionNbTerritories(Missions m,Player p){
 	int listLength=p.getControlledTerritories().size();
 	if (listLength>=m.getNbTerritoriesControlled()){
-		System.out.println("La mission du Player"+p.getPlayerName()+" est reussie");
+		System.out.println("La mission du Player"+p.getPlayerNumber()+" est reussie");
 		return true;
 	}
 	else {
@@ -77,12 +89,13 @@ public static Missions giveAMission(int nbJoueurs,Missions[] tab){
 	
 	Random rand = new Random(); 
 	
-	while (true){
-		nb = rand.nextInt(tab.length - 1);
+	/*while (true){
+		nb = (int)(rand.nextInt(tab.length));
 		if ((nbJoueurs>=tab[nb].getNbJoueurMinimum())&&(nbJoueurs>=tab[nb].getNbJoueurMax())){
 			return tab[nb];
 		}
-	}
+	}*/
+	return tab[0];
 }
 
 

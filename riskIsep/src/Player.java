@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Player {
+	public Missions playerMission;
 	private int playerNumber;
 	public Player(int playerName) {
 		this.playerNumber = playerName;
@@ -74,6 +75,19 @@ public class Player {
 	public ArrayList getControlledRegions() {
 		return controlledRegions;
 	}
+
+
+
+	public Missions getPlayerMission() {
+		return playerMission;
+	}
+
+
+
+	public void setPlayerMission(Missions playerMission) {
+		this.playerMission = playerMission;
+	}
+	
 		
 	
 }
