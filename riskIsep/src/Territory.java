@@ -292,7 +292,25 @@ public static ArrayList<Integer> defendTerritory(Territory terCible){
 	int nCavalry=terCible.getnCavalry();
 	ArrayList<Integer> result = new ArrayList<Integer>();
 	int n=0;
-	
+	if (terCible.getTerritoryUnits()==1){
+		if (nSoldiers>0){
+			result.add(2);
+			result.add(1+(int)(Math.random()*6));
+			
+			
+		}
+		else if (nGuns>0){
+			result.add(3);
+			result.add(4+(int)(Math.random()*9));
+			
+		}
+		else if (nCavalry>0){
+			result.add(1);
+			result.add(n,2+(int)(Math.random()*7));
+			
+		}
+		return result;
+	}
 	while ((n<2)||((nGuns==0)&&(nSoldiers==0)&&(nCavalry==0))){
 		if (nSoldiers>0){
 			result.add(2);
@@ -367,26 +385,26 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	tabDefense=defendTerritory(terCible);
 	System.out.println("TabAttaque");
 	
-	//for (int i=0;i<tabAttaque.size();i=i+2){
-		//System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
-	//}
-	//System.out.println("TabDef");
-	//System.out.println(tabDefense.size());
-	//for (int i=0;i<tabDefense.size();i=i+2){
-	//	System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
-	//}
+	for (int i=0;i<tabAttaque.size();i=i+2){
+	System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
+	}
+	System.out.println("TabDef");
+	System.out.println(tabDefense.size());
+	for (int i=0;i<tabDefense.size();i=i+2){
+		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
+	}
 	
 	tabAttaque=sortArrayList(tabAttaque);
 	tabDefense=sortArrayList(tabDefense);
 	System.out.println("TabAttaque");
-	/*for (int i=0;i<tabAttaque.size();i=i+2){
+	for (int i=0;i<tabAttaque.size();i=i+2){
 		System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
 	}
 	System.out.println("TabDef");
 	for (int i=0;i<tabDefense.size();i=i+2){
 		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
 	}
-	*/
+	
 	
 	
 	// comparaison
@@ -470,11 +488,14 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			i=ter.getnSoldiers();
 			ter.setnSoldiers(i-1);
 		}
-		else{
+		else if (num==3){
 			i=ter.getnGuns();
 			ter.setnGuns(i-1);
 		}
-		//System.out.println("un"+num+" a été tué !"+ "du territoire"+ter.getTerritoryNumber());
+		else{
+			System.out.println("ma bite");
+		}
+		System.out.println("un"+num+" a été tué !"+ "du territoire"+ter.getTerritoryNumber());
 	}
 	
 	
@@ -539,7 +560,7 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 		else if (num==2){
 			ter.setnSoldiers(ter.getnGuns()+1);
 		}
-		else{
+		else if (num==3){
 			ter.setnGuns(ter.getnGuns()+1);
 		}
 	}

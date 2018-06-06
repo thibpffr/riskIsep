@@ -261,6 +261,7 @@ public class Main1 {
 						if(Territory.moveArmy(terOrigin,terCibl,nGuns,nCavalry,nSoldiers))
 						{
 							System.out.println("Le déplacement a été effectué");
+							interfMap.ecranCarte(territoryList);
 						}	
 						
 						else
@@ -304,6 +305,7 @@ public class Main1 {
 					if (terCibl.getPlayerWhoControlls()==playerTurn){
 						System.out.println("Vous ne pouvez pas attaquer votre propre territoire");
 					}
+					
 					else{
 					System.out.println("Vous avez chosi le territoire " +terCibl.getTerritoryNumber());
 					if (Territory.attack(terOrigin,terCibl)){
@@ -319,6 +321,9 @@ public class Main1 {
 					}
 				// on fait joueur les unités
 				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
+				}
+				else if (terCibl.getTerritoryUnits()<=1){
+					System.out.println("Vous ne pouvez pas attaquer avec ce territoire car il n'y a pas assez d'unité dessus");
 				}
 				else{
 					System.out.println("Ce territoire n'est pas à toi");
