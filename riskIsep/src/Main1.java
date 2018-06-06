@@ -161,6 +161,8 @@ public class Main1 {
 				
 		// creation de la carte et de l'interface		
 		interfMap = new Interface(800,550);
+		interfMap.ecranCarte(territoryList);
+		
 		//interfMap.ecranCarte(territoryList);
 		playerTurn=tableauJoueurs.get(0);
 		int troupDepart=0;
@@ -288,30 +290,40 @@ public class Main1 {
 				terOrigine= interfMap.territoryChoice();
 				
 				terOrigin = territoryList[terOrigine];
-				System.out.println("Vous avez chosi le territoire " +terOrigin.getTerritoryNumber());
+				if (terOrigin.getPlayerWhoControlls()==playerTurn) {
+				
+					System.out.println("Vous avez chosi le territoire " +terOrigin.getTerritoryNumber());
 				
 				
 				// le joueur choisit le territoire cible
-				java.lang.Thread.sleep(500);
-				System.out.println("choisissez le Territoire vers lequel vous voulez lancer l'attaque");
-				terCible = interfMap.territoryChoice();
+					java.lang.Thread.sleep(500);
+					System.out.println("choisissez le Territoire vers lequel vous voulez lancer l'attaque");
+					terCible = interfMap.territoryChoice();
 				
-				terCibl = territoryList[terCible];
-				System.out.println("Vous avez chosi le territoire " +terCibl.getTerritoryNumber());
-				
+					terCibl = territoryList[terCible];
+					if (terCibl.getPlayerWhoControlls()==playerTurn){
+						System.out.println("Vous ne pouvez pas attaquer votre propre territoire");
+					}
+					else{
+					System.out.println("Vous avez chosi le territoire " +terCibl.getTerritoryNumber());
+					if (Territory.attack(terOrigin,terCibl)){
+						System.out.println("Territoire conquis");
+						interfMap.ecranCarte(territoryList);
+					}
+					
+					else{
+						System.out.println("Echec de la conquete");
+						interfMap.ecranCarte(territoryList);
+					}
+					//interfMap.ecranCarte(territoryList);
+					}
 				// on fait joueur les unités
 				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
-				
-				if (Territory.attack(terOrigin,terCibl)){
-					System.out.println("Territoire conquis");
-					interfMap.ecranCarte(territoryList);
 				}
-				
 				else{
-					System.out.println("Echec de la conquete");
-					interfMap.ecranCarte(territoryList);
+					System.out.println("Ce territoire n'est pas à toi");
 				}
-				//interfMap.ecranCarte(territoryList);
+				
 				
 			}
 			if(player==tableauJoueurs.size()) {
