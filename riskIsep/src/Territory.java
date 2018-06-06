@@ -37,8 +37,8 @@ public class Territory {
 		if (choixTroupe==choiceTroup[0]) {
 			//Il faut encore choisir le nombre de soldat que l'on veut placer
 			
-			String[] choicenbSoldat = new String[numberOfTroup+1];
-			for (int i=0;i<=numberOfTroup;i++) {
+			String[] choicenbSoldat = new String[numberOfTroup];
+			for (int i=0;i<numberOfTroup;i++) {
 				choicenbSoldat[i]= String.valueOf(i+1);
 			}
 			int choixnbSoldat = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbSoldat, "0"));
@@ -51,8 +51,8 @@ public class Territory {
 			System.out.println("Il vous reste "+numberOfTroup+" troupe à placer");
 		}
 		else if (choixTroupe==choiceTroup[1]) {
-			String[] choicenbCavalier = new String[numberOfTroup+1];
-			for (int i=0;i<=numberOfTroup;i++) {
+			String[] choicenbCavalier = new String[(numberOfTroup)/3];
+			for (int i=0;i<(numberOfTroup/3);i++) {
 				choicenbCavalier[i]= String.valueOf(i+1);
 			}
 			int choixnbCavalier = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbCavalier, "0"));
@@ -64,8 +64,8 @@ public class Territory {
 			System.out.println("il reste "+numberOfTroup+" troupe à placer");
 		}
 		else if (choixTroupe==choiceTroup[2]) {
-			String[] choicenbCanon = new String[numberOfTroup+1];
-			for (int i=0;i<=numberOfTroup;i++) {
+			String[] choicenbCanon = new String[(numberOfTroup)/7];
+			for (int i=0;i<(numberOfTroup/7);i++) {
 				choicenbCanon[i]= String.valueOf(i+1);
 			}
 			int choixnbCanon = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbCanon, "0"));
@@ -623,12 +623,4 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 		return this.getnGuns()+this.getnCavalry()+this.getnSoldiers();
 	}
 	
-	
-
-
-	
-	
-	
-	
-
 }
