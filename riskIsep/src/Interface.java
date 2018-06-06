@@ -57,12 +57,12 @@ public class Interface {
 		}
 	}
 	
-	public static void consoleVirt(Interface interfMap,Territory[] territoryList, String k){
+	/*public static void consoleVirt(Interface interfMap,Territory[] territoryList, String k){
 		//StdDraw.enableDoubleBuffering();
 		interfMap.ecranCarte(territoryList);
 		StdDraw.text(0.5,0.9,k);
 	}
-	
+	*/
 	
 	/*public void ecranNbJoueurs(){
 	StdDraw.clear();
