@@ -11,18 +11,19 @@ public class Main1 {
 	static Interface interfMap;
 	static Territory terOrigin;
 	static Territory terCibl;
-	int[] listSAmericaTerritory = {1,2,3,4};
-	int[] listNAmericaTerritory = {5,6,7,8,9,10,11,12,13};
-	int[] listEuropeTerritory = {14,15,16,17,18,19,20};
-	int[] listAsiaTerritory = {21,22,23,24,25,26,27,28,29,30,31,32};
-	int[] listOceaniaTerritory = {33,34,35,36};
-	int[] listAfricaTerritory = {37,38,39,40,41,42};
-	Region NAmerica = new Region(1,4,listSAmericaTerritory);
-	Region SAmerica = new Region(2,9,listNAmericaTerritory);
-	Region Europe = new Region(3,7,listEuropeTerritory);
-	Region Asia = new Region(4,12,listAsiaTerritory);
-	Region Oceania = new Region(5,4,listOceaniaTerritory);
-	Region Africa = new Region(6,6,listAfricaTerritory);
+	static int[] listSAmericaTerritory = {1,2,3,4};
+	static int[] listNAmericaTerritory = {5,6,7,8,9,10,11,12,13};
+	static int[] listEuropeTerritory = {14,15,16,17,18,19,20};
+	static int[] listAsiaTerritory = {21,22,23,24,25,26,27,28,29,30,31,32};
+	static int[] listOceaniaTerritory = {33,34,35,36};
+	static int[] listAfricaTerritory = {37,38,39,40,41,42};
+	static Region NAmerica = new Region(1,4,listSAmericaTerritory);
+	static Region SAmerica = new Region(2,9,listNAmericaTerritory);
+	static Region Europe = new Region(3,7,listEuropeTerritory);
+	static Region Asia = new Region(4,12,listAsiaTerritory);
+	static Region Oceania = new Region(5,4,listOceaniaTerritory);
+	static Region Africa = new Region(6,6,listAfricaTerritory);
+	static Region[] regionList= {SAmerica,NAmerica,Europe,Asia,Oceania,Africa};
 	static int [] Adj1= {2,3,4,42};
 	static int [] Adj2= {4,1};
 	static int [] Adj3= {1,5};
@@ -232,6 +233,7 @@ public class Main1 {
 					if (terCibl.getPlayerWhoControlls()==playerTurn) {
 						troupUsed=Territory.placerTroupe(numberOfTroup, terCibl);
 					}
+					interfMap.ecranCarte(territoryList);
 					numberOfTroup=numberOfTroup-troupUsed;
 				}
 			}
