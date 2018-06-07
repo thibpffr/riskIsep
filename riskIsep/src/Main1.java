@@ -156,6 +156,8 @@ public class Main1 {
 			tableauJoueurs.get(j).controlledTerritories.add(territoryList[i].getTerritoryNumber());//on rajoute le territoire à la liste des territoires controllés par le joueur.
 			territoryList[i].setnSoldiers(1);
 			System.out.println("Le territoire "+territoryList[i].getTerritoryNumber()+" a ete associé au joueur"+tableauJoueurs.get(j).getPlayerNumber());
+			System.out.println("size joueur "+1+"="+tableauJoueurs.get(0).controlledTerritories.size());
+			System.out.println("size joueur "+2+"="+tableauJoueurs.get(1).controlledTerritories.size());
 			j++;
 			if (j>=nbJoueurs) {
 				j=0;
