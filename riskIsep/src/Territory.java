@@ -249,7 +249,7 @@ public class Territory {
 			choiceTroup=choice2;
 			
 			
-			choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
+			choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Choix attaque", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
 			if ((choixTroupe==choiceTroup[0])&&(nSoldiers>0)){
 				result.add(2);
 				result.add((int)(Math.random()*6)+1);
