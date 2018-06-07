@@ -218,25 +218,26 @@ public class Main1 {
 		// ####### La partie commence pour de vrai#######
 		for(int player=0;player<tableauJoueurs.size();player++) {
 			choix=-1;
+			playerTurn=tableauJoueurs.get(player);
+			int nb=(playerTurn.getPlayerNumber()+1);
+			System.out.println("c'est le tour du Joueur "+nb);
+			if (tour1>=2) {
+				troupUsed=0;
+				numberOfTroup=numberOfTroup+Player.addRenfort(playerTurn);
+				while(numberOfTroup>0) {
+					System.out.println("Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
+					terCible= interfMap.territoryChoice();
+					terCibl=territoryList[terCible];
+					System.out.println("Vous avez choisi le territoire "+terCibl.getTerritoryNumber());
+					if (terCibl.getPlayerWhoControlls()==playerTurn) {
+						troupUsed=Territory.placerTroupe(numberOfTroup, terCibl);
+					}
+					numberOfTroup=numberOfTroup-troupUsed;
+				}
+			}
 			// pour etre sur de rentrer dans le while
 			while(choix!=2) {
-				playerTurn=tableauJoueurs.get(player);
-				int nb=(playerTurn.getPlayerNumber()+1);
-				System.out.println("c'est le tour du Joueur "+nb);
-				if (tour1>=2) {
-					troupUsed=0;
-					numberOfTroup=numberOfTroup+Player.addRenfort(playerTurn);
-					while(numberOfTroup>0) {
-						System.out.println("Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
-						terCible= interfMap.territoryChoice();
-						terCibl=territoryList[terCible];
-						System.out.println("Vous avez choisi le territoire "+terCibl.getTerritoryNumber());
-						if (terCibl.getPlayerWhoControlls()==playerTurn) {
-							troupUsed=Territory.placerTroupe(numberOfTroup, terCibl);
-						}
-						numberOfTroup=numberOfTroup-troupUsed;
-					}
-				}
+				
 				
 				//System.out.println("à la ligne "+215+" choix="+choix);
 				
