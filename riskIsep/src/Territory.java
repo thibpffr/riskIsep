@@ -502,46 +502,75 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	
 	
 	public static int[] chooseUnit(Territory terOrigin){
-		int nGuns;
-		int nCavalry;
-		int nSoldiers;
-		//On verifie qu'il y ait des canons sur le territoire; s'il n'y en a pas, on ne propose pas de choisir le nombre.
-		if (terOrigin.getnGuns()==0) {
-			nGuns = 0;
+		int nGuns=0;
+		int nCavalry=0;
+		int nSoldiers=0;
+		ArrayList<String> choixTroup = new ArrayList<String>();
+		choixTroup.add("Soldat");
+		choixTroup.add("Cavalier");
+		choixTroup.add("Canon");
+		choixTroup.add("Arreter");
+		if (terOrigin.getnGuns()==0&&terOrigin.getnCavalry()==0) {
+			choixTroup.remove("Cavalier");
+			choixTroup.remove("Canon");
 		}
-		else { // s'il y en a on fait une fenêtre pop up pour choisir le nombre que l'on veut déplacer
-		//On crée un tableau contenant les choix que l'on dans le choix du nombre de canon pour pouvoir l'utiliser dans OptionPane
-			String[] choiceGun = new String[terOrigin.getnGuns()];
-		for (int i=0;i<=terOrigin.getnGuns();i++) {
-			choiceGun[i]= String.valueOf(i+1);
+		else if (terOrigin.getnCavalry()==0&&terOrigin.getnGuns()==0) {
+			choixTroup.remove("Cavalier");
+			choixTroup.remove("Canon");
 		}
-		nGuns = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de Canons voulez-vous déplacer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceGun, "0"));
+		else if (terOrigin.getnCavalry()==0&&terOrigin.getnSoldiers()==0) {
+			choixTroup.remove("Cavalier");
+			choixTroup.remove("Soldat");
+		}
+		else if (terOrigin.getnSoldiers()==0&&terOrigin.getnCavalry()==0) {
+			choixTroup.remove("Cavalier");
+			choixTroup.remove("Soldat");
+		}
+		else if (terOrigin.getnSoldiers()==0&&terOrigin.getnGuns()==0) {
+			choixTroup.remove("Canon");
+			choixTroup.remove("Soldat");
+		}
+		else if (terOrigin.getnGuns()==0&&terOrigin.getnSoldiers()==0) {
+			choixTroup.remove("Canon");
+			choixTroup.remove("Soldat");
+		}
+		else if (terOrigin.getnSoldiers()==0) {
+			choixTroup.remove("Soldat");
+		}
+		else if (terOrigin.getnGuns()==0) {
+			choixTroup.remove("Canon");
+		}
+		else if (terOrigin.getnCavalry()==0) {
+			choixTroup.remove("Cavalier");
+		}
+
+		String[] choiceTroup=new String[choixTroup.size()];
+		for (int j=0;j<choixTroup.size();j++) {
+			choiceTroup[j]=choixTroup.get(j);
+		}
+		String choixTroupe = (String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceTroup, "0");
+		if (choixTroupe=="Canon") {
+			String[] choicenbSoldat = new String[terOrigin.getnGuns()];
+			for (int i=0;i<terOrigin.getnGuns();i++) {
+				choicenbSoldat[i]= String.valueOf(i+1);
+			}
+			nGuns = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbSoldat, "0"));
 		}
 		
-		//On verifie qu'il y ait des cavaliers sur le territoire; s'il n'y en a pas, on ne propose pas de choisir le nombre.
-		if (terOrigin.getnCavalry()==0) {
-			nCavalry=0;
-		}
-		else { // s'il y en a on fait une fenêtre pop up pour choisir le nombre que l'on veut déplacer
-			//On crée un tableau contenant les choix que l'on dans le choix du nombre de cavalier pour pouvoir l'utiliser dans OptionPane
-			String[] choiceCavalry = new String[terOrigin.getnCavalry()];
-		for (int i=0;i<=terOrigin.getnCavalry();i++) {
-			choiceCavalry[i]= String.valueOf(i+1);
-		}
-		nCavalry = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de Cavaliers voulez-vous déplacer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceCavalry, "0"));
+		else if (choixTroupe=="Cavalier") {
+			String[] choicenbSoldat = new String[terOrigin.getnCavalry()];
+			for (int i=0;i<terOrigin.getnCavalry();i++) {
+				choicenbSoldat[i]= String.valueOf(i+1);
+			}
+			nCavalry = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbSoldat, "0"));
 		}
 		
-		//On verifie qu'il y ait des soldats sur le territoire; s'il n'y en a pas, on ne propose pas de choisir le nombre.
-		if (terOrigin.getnSoldiers()==0) {
-			nSoldiers=0;
-		}
-		else { // s'il y en a on fait une fenêtre pop up pour choisir le nombre que l'on veut déplacer
-			//On crée un tableau contenant les choix que l'on dans le choix du nombre de soldat pour pouvoir l'utiliser dans OptionPane
-			String[] choiceSoldier = new String[terOrigin.getnSoldiers()];
-		for (int i=0;i<terOrigin.getnSoldiers();i++) {
-			choiceSoldier[i]= String.valueOf(i+1);
-		}
-		nSoldiers = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de Soldats voulez-vous déplacer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choiceSoldier, "0"));
+		else if (choixTroupe=="Soldat") {
+			String[] choicenbSoldat = new String[terOrigin.getnSoldiers()];
+			for (int i=0;i<terOrigin.getnSoldiers();i++) {
+				choicenbSoldat[i]= String.valueOf(i+1);
+			}
+			nSoldiers = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Quelle troupe voulez vous placer?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choicenbSoldat, "0"));
 		}
 		
 		int Table[]= {nSoldiers,nCavalry,nGuns};
