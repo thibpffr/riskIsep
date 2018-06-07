@@ -7,8 +7,8 @@ public class Player {
 		this.playerNumber = playerName;
 	}
 	private int nTroup=0;
-	static ArrayList<Integer> controlledTerritories = new ArrayList<Integer>();
-	static ArrayList<Integer> controlledRegions=new ArrayList<Integer>();
+	ArrayList<Integer> controlledTerritories = new ArrayList<Integer>();
+	ArrayList<Integer> controlledRegions=new ArrayList<Integer>();
 
 
 
