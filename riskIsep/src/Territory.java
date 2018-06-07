@@ -287,30 +287,40 @@ public class Territory {
 	
 	
 public static ArrayList<Integer> defendTerritory(Territory terCible){
+	System.out.println("ligne 290");
 	int nGuns=terCible.getnGuns();
 	int nSoldiers=terCible.getnSoldiers();
 	int nCavalry=terCible.getnCavalry();
 	ArrayList<Integer> result = new ArrayList<Integer>();
 	int n=0;
-	if (terCible.getTerritoryUnits()==1){
+	System.out.println("num="+terCible.getTerritoryUnits());
+	if (terCible.getTerritoryUnits()<=2){
 		if (nSoldiers>0){
-			result.add(2);
-			result.add(1+(int)(Math.random()*6));
-			
+			while(nSoldiers>0){
+				result.add(2);
+				result.add(1+(int)(Math.random()*6));
+				nSoldiers --;
+			}
 			
 		}
 		else if (nGuns>0){
-			result.add(3);
-			result.add(4+(int)(Math.random()*9));
+			while(nGuns>0){
+				result.add(3);
+				result.add(4+(int)(Math.random()*9));
+				nGuns--;
+			}
 			
 		}
 		else if (nCavalry>0){
-			result.add(1);
-			result.add(n,2+(int)(Math.random()*7));
-			
+			while(nCavalry>0){
+				result.add(1);
+				result.add(n,2+(int)(Math.random()*7));
+				nCavalry--;
+			}
 		}
 		return result;
 	}
+	else{
 	while ((n<2)||((nGuns==0)&&(nSoldiers==0)&&(nCavalry==0))){
 		if (nSoldiers>0){
 			result.add(2);
@@ -334,6 +344,7 @@ public static ArrayList<Integer> defendTerritory(Territory terCible){
 			nCavalry--;
 			n++;
 		}
+	}
 	}
 	return result;
 	
@@ -467,17 +478,24 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			terCible.setnGuns(0);
 			terCible.setnSoldiers(0);
 			terCible.setPlayerWhoControlls(terOrigine.getPlayerWhoControlls());
+			Player p=terOrigine.getPlayerWhoControlls();
+			p.controlledTerritories.add(terCible.getTerritoryNumber());
 			// on met les unités qu'il reste sur le nouveau ter
 		
 			System.out.println("on est maintenant au momment de tuer et ajouter des unités");
+			System.out.println("Avant de commencer les manoeuvres il y a"+terCible.getTerritoryUnits()+" unités sur le ter");
 			for (  i=1;i<tabAttaque.size();i=i+2){
-				System.out.println("i-1= "+(i-1)+" et tab(i-1)="+tabAttaque.get(i-1));
-				System.out.println("i= "+i+" et tab(i)="+tabAttaque.get(i));
+				//System.out.println("i-1= "+(i-1)+" et tab(i-1)="+tabAttaque.get(i-1));
+				//System.out.println("i= "+i+" et tab(i)="+tabAttaque.get(i));
+				System.out.println("Je traite la "+i+"armée");
 					if (tabAttaque.get(i)!=0){
+						if (terOrigine.getTerritoryUnits()>1){
 					ajouterUnite(terCible, tabAttaque.get(i-1));
 					
 					tuerUnite(terOrigine,tabAttaque.get(i-1));
-					System.out.println("on agit");
+					System.out.println("j'ajouter un "+tabAttaque.get(i-1)+" sur le territoire conquis");
+					System.out.println("sur le ter cible nb units="+terCible.getTerritoryUnits());
+						}
 					
 					
 				}
@@ -598,7 +616,7 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			
 		}
 		else if (num==2){
-			ter.setnSoldiers(ter.getnGuns()+1);
+			ter.setnSoldiers(ter.getnSoldiers()+1);
 		}
 		else if (num==3){
 			ter.setnGuns(ter.getnGuns()+1);
