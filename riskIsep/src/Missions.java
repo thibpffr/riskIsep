@@ -25,6 +25,7 @@ public static boolean isMissionSuceeded(Player p){
 	ArrayList<Integer> ter = new ArrayList<Integer>(); 
 	ter= p.getControlledTerritories();
 	Missions m=p.getPlayerMission();
+	System.out.println("Longueur liste joueur"+ter.size());
 	if (ter.size()>=m.getNbTerritoriesControlled()){
 		return true;
 	}
@@ -55,7 +56,7 @@ public boolean missionTerritoriesAndRegions(Missions m,Player p){
 	ArrayList listeTer=p.getControlledTerritories();
 	ArrayList listeReg=p.getControlledRegions();
 	if((m.getNbTerritoriesControlled()<=listeTer.size())&&(m.getNbRegionControlled()<=listeReg.size())){
-		System.out.println("La mission du Player"+p.getPlayerName()+" est reussie");
+		System.out.println("La mission du Player"+p.getPlayerNumber()+" est reussie");
 		return true;
 	
 	}
@@ -77,7 +78,7 @@ public boolean mission2Armies(Missions m, Player p){
 		 }
 	 }
 	 if (nbTerControlesAvec2Armees>18){
-		 System.out.println("La mission du Player"+p.getPlayerName()+" est reussie");
+		 System.out.println("La mission du Player"+p.getPlayerNumber()+" est reussie");
 		 return true;
 	 }
 	 return false;

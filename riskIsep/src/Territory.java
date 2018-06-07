@@ -396,14 +396,14 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	
 	tabAttaque=sortArrayList(tabAttaque);
 	tabDefense=sortArrayList(tabDefense);
-	/*System.out.println("TabAttaque");
+	System.out.println("TabAttaque ligne 399");
 	for (int i=0;i<tabAttaque.size();i=i+2){
 		System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
 	}
-	System.out.println("TabDef");
+	System.out.println("TabDef ligne 403");
 	for (int i=0;i<tabDefense.size();i=i+2){
 		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
-	}*/
+	}
 	
 	
 	
@@ -450,6 +450,14 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			
 		}
 		i=i+2;
+		System.out.println("Tab Attaque ligne 453");
+		for (int j=0;j<tabAttaque.size();j=j+2){
+			System.out.println(tabAttaque.get(j)+" "+tabAttaque.get(j+1));
+		}
+		System.out.println("Tab def a la ligne 457");
+		for (int y=0;y<tabDefense.size();y=y+2){
+			System.out.println(tabDefense.get(y)+" "+tabDefense.get(y+1));
+		}
 	}
 		// a partir de ce momment il faut compter les zeros pour savoir qui a gagné et agir en csq (enlever les morts)
 		if (terCible.getTerritoryUnits()<=0){
@@ -460,13 +468,16 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			terCible.setnSoldiers(0);
 			terCible.setPlayerWhoControlls(terOrigine.getPlayerWhoControlls());
 			// on met les unités qu'il reste sur le nouveau ter
-			for (  i=1;i<tabAttaque.size();i++){
-			
+		
+			System.out.println("on est maintenant au momment de tuer et ajouter des unités");
+			for (  i=1;i<tabAttaque.size();i=i+2){
+				System.out.println("i-1= "+(i-1)+" et tab(i-1)="+tabAttaque.get(i-1));
+				System.out.println("i= "+i+" et tab(i)="+tabAttaque.get(i));
 					if (tabAttaque.get(i)!=0){
 					ajouterUnite(terCible, tabAttaque.get(i-1));
 					
 					tuerUnite(terOrigine,tabAttaque.get(i-1));
-					System.out.println("tab="+tabAttaque.get(i-1));
+					System.out.println("on agit");
 					
 					
 				}

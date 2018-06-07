@@ -143,6 +143,7 @@ public class Main1 {
 		//Player[] tableauJoueurs= new Player[nbJoueurs];
 		for(int i=0;i<nbJoueurs;i++) {
 			Player p = new Player(i);
+			p.setPlayerMission(Missions.giveAMission(2,Missions.missionTab));
 			tableauJoueurs.add(p);
 		}
 				
@@ -308,12 +309,20 @@ public class Main1 {
 				System.out.println("choisissez le Territoire depuis lequel vous voulez lancer l'attaque");
 				terOrigine= interfMap.territoryChoice();
 				
+				
+				
 				terOrigin = territoryList[terOrigine];
-				if (terOrigin.getPlayerWhoControlls()==playerTurn) {
+				if (terOrigin.getTerritoryUnits()<=1){
+					System.out.println("Ce territoire n'a pas assez d'unités pour attaquer");
+				}
+				else if (terOrigin.getPlayerWhoControlls()!=playerTurn) {
+					System.out.println("Vous ne pouvez pas attaquer depuis un territoire qui n'est pas à vous");
 				
+					
+				
+				}
+				else{
 					System.out.println("Vous avez chosi le territoire " +terOrigin.getTerritoryNumber());
-				
-				
 				// le joueur choisit le territoire cible
 					java.lang.Thread.sleep(500);
 					System.out.println("choisissez le Territoire vers lequel vous voulez lancer l'attaque");
@@ -326,32 +335,25 @@ public class Main1 {
 					
 					else{
 					System.out.println("Vous avez chosi le territoire " +terCibl.getTerritoryNumber());
-					if (Territory.attack(terOrigin,terCibl)){
-						System.out.println("Territoire conquis");
-						interfMap.ecranCarte(territoryList);
-					}
+						if (Territory.attack(terOrigin,terCibl)){
+							System.out.println("Territoire conquis");
+							interfMap.ecranCarte(territoryList);
+						}
 					
-					else{
-						System.out.println("Echec de la conquete");
-						interfMap.ecranCarte(territoryList);
-					}
+						else{
+							System.out.println("Echec de la conquete");
+							interfMap.ecranCarte(territoryList);
+						}
 					//interfMap.ecranCarte(territoryList);
 					}
 				// on fait joueur les unités
 				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
-				}
-				else if (terCibl.getTerritoryUnits()<=1){
-					System.out.println("Vous ne pouvez pas attaquer avec ce territoire car il n'y a pas assez d'unité dessus");
-				}
-				else{
-					System.out.println("Ce territoire n'est pas à toi");
-				}
 				
 				
 				}
 			
 			
-			}
+				}
 			if(player==tableauJoueurs.size()-1) {
 				player=-1;
 			}
@@ -362,6 +364,7 @@ public class Main1 {
 			tour1=tour1+1;
 		}
 	}
+}
 }
 	
 
