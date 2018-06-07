@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Main1 {
+	static int tour1=0;
 	static Interface interfMap;
 	static Territory terOrigin;
 	static Territory terCibl;
@@ -97,8 +98,8 @@ public class Main1 {
 	static Territory Oceania33 = new Territory(33, Adj33,0.66,0.72,0.2,0.29);
 	static Territory NewZeland = new Territory(34, Adj34,0.75,0.79,0.26,0.33);
 	static Territory EAustralia = new Territory(35, Adj35,0.79,0.83,0.03,0.2);
-	static Territory WAustralia = new Territory(36, Adj36,0.52,0.56,0.03,0.16);
-	static Territory Madagascar = new Territory(37, Adj37,0.70,0.075,0.05,0.17);
+	static Territory WAustralia = new Territory(36, Adj36,0.70,0.075,0.05,0.17);
+	static Territory Madagascar = new Territory(37, Adj37,0.52,0.56,0.03,0.16);//
 	static Territory SAfrica = new Territory(38, Adj38,0.43,0.49,0.05,0.17);
 	static Territory Congo = new Territory(39, Adj39,0.41,0.49,0.17,0.3);
 	static Territory Somalie = new Territory(40, Adj40,0.46,0.55,0.16,0.37);
@@ -131,20 +132,17 @@ public class Main1 {
 		int nSoldiers=0;
 		
 		//---- 1ere boite de dialogue  demander de rentrer le nombre de joueurs qui jouent
-		// creation des joueurs
 		Missions mission1=new Missions();
 		mission1.setNbTerritoriesControlled(42);
 		mission1.setNbJoueurMinimum(2);
 		mission1.setNbJoueurMax(6);
 		Missions.missionTab[0]=mission1;
 		
-		
 		String[] choices = {"2", "3", "4", "5", "6"};
 		int nbJoueurs = Integer.parseInt((String)JOptionPane.showInputDialog(JOptionPane.getRootFrame(), "Combien de joueurs ?", "Initialisation", JOptionPane.PLAIN_MESSAGE, null, choices, "2"));
 		//Player[] tableauJoueurs= new Player[nbJoueurs];
 		for(int i=0;i<nbJoueurs;i++) {
 			Player p = new Player(i);
-			p.setPlayerMission(Missions.giveAMission(nbJoueurs,Missions.missionTab));
 			tableauJoueurs.add(p);
 		}
 				
@@ -176,7 +174,7 @@ public class Main1 {
 		//Definition du nombre de Troupe de depart en fonction du nombre de joueur
 		for (int i =0; i<tableauJoueurs.size();i++) {
 			if (tableauJoueurs.size()==2) {
-				troupDepart=20;
+				troupDepart=10;
 			}
 			else if (tableauJoueurs.size()==3) {
 				troupDepart=35;
@@ -197,9 +195,8 @@ public class Main1 {
 		int troupUsed=0;
 		for (int i =0; i<tableauJoueurs.size();i++) {
 			playerTurn=tableauJoueurs.get(i);
-					
+				numberOfTroup=troupDepart;	
 			//Interface.consoleVirt( interfMap, territoryList,"c'est le joueur"+i);
-			numberOfTroup=troupDepart;
 			while(numberOfTroup>0) {
 				System.out.println("Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
 				terCible= interfMap.territoryChoice();
@@ -214,8 +211,6 @@ public class Main1 {
 			}
 		}
 		// ####### La partie commence pour de vrai#######
-		
-		
 		for(int player=0;player<tableauJoueurs.size();player++) {
 			choix=-1;
 			// pour etre sur de rentrer dans le while
@@ -223,6 +218,20 @@ public class Main1 {
 				playerTurn=tableauJoueurs.get(player);
 				int nb=(playerTurn.getPlayerNumber()+1);
 				System.out.println("c'est le tour du Joueur "+nb);
+				if (tour1>=2) {
+					troupUsed=0;
+					numberOfTroup=numberOfTroup+Player.addRenfort(playerTurn);
+					while(numberOfTroup>0) {
+						System.out.println("Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
+						terCible= interfMap.territoryChoice();
+						terCibl=territoryList[terCible];
+						System.out.println("Vous avez choisi le territoire "+terCibl.getTerritoryNumber());
+						if (terCibl.getPlayerWhoControlls()==playerTurn) {
+							troupUsed=Territory.placerTroupe(numberOfTroup, terCibl);
+						}
+						numberOfTroup=numberOfTroup-troupUsed;
+					}
+				}
 				
 				//System.out.println("à la ligne "+215+" choix="+choix);
 				
@@ -300,16 +309,7 @@ public class Main1 {
 				terOrigine= interfMap.territoryChoice();
 				
 				terOrigin = territoryList[terOrigine];
-				if (terCibl.getTerritoryUnits()<=1){
-						System.out.println("Vous ne pouvez pas attaquer avec ce territoire car il n'y a pas assez d'unité dessus");
-				}
-				
-				else if (terOrigin.getPlayerWhoControlls()!=playerTurn) {
-					
-					System.out.println("Ce territoire n'est pas à toi");
-					
-				}
-				else{
+				if (terOrigin.getPlayerWhoControlls()==playerTurn) {
 				
 					System.out.println("Vous avez chosi le territoire " +terOrigin.getTerritoryNumber());
 				
@@ -340,17 +340,26 @@ public class Main1 {
 				// on fait joueur les unités
 				// chacune génère les chiffres pour le match de dés correspondant à sa capacité
 				}
+				else if (terCibl.getTerritoryUnits()<=1){
+					System.out.println("Vous ne pouvez pas attaquer avec ce territoire car il n'y a pas assez d'unité dessus");
+				}
+				else{
+					System.out.println("Ce territoire n'est pas à toi");
+				}
 				
-			}
-			if(player==tableauJoueurs.size()) {
-				player=0;
-			}
-			}
+				
+				}
 			
+			
+			}
+			if(player==tableauJoueurs.size()-1) {
+				player=-1;
+			}
 			if (Missions.isMissionSuceeded(playerTurn)){
 				// ecran de victoire sa mere
 				System.out.println("vous avez gagné, le monde est à vous");
 			}
+			tour1=tour1+1;
 		}
 	}
 }
