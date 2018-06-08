@@ -48,7 +48,7 @@ public class Interface {
 			StdDraw.setPenColor(StdDraw.WHITE);
 			Font font = new Font("Arial", Font.BOLD, 10);
 			StdDraw.setFont(font);
-			StdDraw.text((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,"s :"+territoryList[i].getnSoldiers()+"c :"+territoryList[i].getnCavalry()+"g :"+territoryList[i].getnGuns());
+			StdDraw.text((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,territoryList[i].getnSoldiers()+"s,"+territoryList[i].getnCavalry()+"c,"+territoryList[i].getnGuns()+"g");
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.filledRectangle(0.92,0.79,0.05,0.07);
 			StdDraw.filledRectangle(0.92,0.6,0.05,0.07);

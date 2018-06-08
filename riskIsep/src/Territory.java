@@ -93,7 +93,7 @@ public class Territory {
 	}
 
 	public static boolean attackTerritoryCheck(Territory terOrigine, Territory terCible,int nGunsAttaquant, int nCavalryAttaquant,int nSoldiersAttaquant ){
-		// la fonction renvoie true si l'attaque est possible, 0 sinon
+		// la fonction renvoie true si l'attaque est possible, false sinon
 		int nAttaque=nGunsAttaquant+nSoldiersAttaquant+nCavalryAttaquant;
 		int nPresent=terOrigine.getnCavalry()+terOrigine.getnGuns()+terOrigine.getnSoldiers();
 		// verifier que les territoires sont voisins
@@ -135,6 +135,7 @@ public class Territory {
 	}
 	
 	public static boolean isABorderTerritory(Territory terOrigine, Territory terCible){
+		// cette fonction verifie si les territoires sont mitoyens ou passd
 		int[] listeVoisins={};
 		int rep=0;
 		listeVoisins=terOrigine.getBorderTerritories();
@@ -235,13 +236,14 @@ public class Territory {
 	
 	public static ArrayList<Integer> attackTerritory(Territory terOrigine){
 		System.out.println("Choisissez les 3 unités que vous souhaiter utiliser pour attaquer");
+		// ces variables sontle nombre d'unités qu'il y a sur le territoire a la base
 		int nGuns=terOrigine.getnGuns();
 		int nSoldiers=terOrigine.getnSoldiers();
 		int nCavalry=terOrigine.getnCavalry();
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		int n=0;// nombre d'unités affectés au combat
 		String[] choiceTroup={"1","3","2","1"};
-		
+		// variables pour le choix des unités affectées au combat
 		String choixTroupe="";
 		// tab[i] pour le type d'armée :1 pour le soldat, 2 pour le canon et 3 pour le cavalier
 		while((n<3)&&(choixTroupe!=choiceTroup[3])){
@@ -256,7 +258,8 @@ public class Territory {
 				
 				nSoldiers--;
 				n++;
-				
+				// ajout dans le tableau du type d'unités et le score affecté en fonction des bornes
+				// result(i) est le type d'unité et result(i+1) est son score
 			}
 			else if ((choixTroupe==choiceTroup[1])&&(nCavalry>0)){
 				result.add(1);
@@ -275,9 +278,10 @@ public class Territory {
 				
 			}
 			else{
+				// on est dans ce cas si le type d'unité sélectionné n'est pas présent sur le territoire
 				System.out.println("Ajout impossible");
 			}
-			System.out.println("n="+n);
+			//System.out.println("n="+n);
 		
 		
 				
@@ -287,13 +291,16 @@ public class Territory {
 	
 	
 public static ArrayList<Integer> defendTerritory(Territory terCible){
-	System.out.println("ligne 290");
+	//System.out.println("ligne 290");
+	// unités présentes sur le territoire
 	int nGuns=terCible.getnGuns();
 	int nSoldiers=terCible.getnSoldiers();
 	int nCavalry=terCible.getnCavalry();
 	ArrayList<Integer> result = new ArrayList<Integer>();
-	int n=0;
-	System.out.println("num="+terCible.getTerritoryUnits());
+	int n=0;//nombre d'unités ajoutées au tableau defensse
+	//System.out.println("num="+terCible.getTerritoryUnits());
+	
+	// il y a toujours le type d'unité en tab[i] et le tab[i+1] est son score
 	if (terCible.getTerritoryUnits()<=2){
 		if (nSoldiers>0){
 			while(nSoldiers>0){
@@ -352,6 +359,8 @@ public static ArrayList<Integer> defendTerritory(Territory terCible){
 }
 	
 public static ArrayList<Integer> sortArrayList(ArrayList<Integer> array){
+	// cette fonction classe les scores dans un ordre décroissant
+	// a cahque fois on classe en fonction de array[i+1] et on bouge le array[i] en meme temps
 	int max=array.get(1),n=0;
 	int index=0;
 	ArrayList<Integer> result = new ArrayList<Integer>();
@@ -379,6 +388,7 @@ public static ArrayList<Integer> sortArrayList(ArrayList<Integer> array){
 		
 	}
 	return result;
+	// le tableau renvoyé est donc classé
 		
 	
 }
@@ -394,7 +404,7 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	tabAttaque=attackTerritory(terOrigine);
 	ArrayList<Integer> tabDefense = new ArrayList<Integer>(); 
 	tabDefense=defendTerritory(terCible);
-	System.out.println("TabAttaque");
+	//System.out.println("TabAttaque");
 	
 	/*for (int i=0;i<tabAttaque.size();i=i+2){
 	System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
@@ -407,22 +417,23 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	
 	tabAttaque=sortArrayList(tabAttaque);
 	tabDefense=sortArrayList(tabDefense);
-	System.out.println("TabAttaque ligne 399");
+	// les tableaux sont maintenant classés
+	/*System.out.println("TabAttaque ligne 399");
 	for (int i=0;i<tabAttaque.size();i=i+2){
 		System.out.println(tabAttaque.get(i)+" "+tabAttaque.get(i+1));
 	}
 	System.out.println("TabDef ligne 403");
 	for (int i=0;i<tabDefense.size();i=i+2){
 		System.out.println(tabDefense.get(i)+" "+tabDefense.get(i+1));
-	}
+	}*/
 	
 	
 	
-	// comparaison
-	int taille=Math.min(tabAttaque.size(),tabDefense.size());
+	// -------------comparaison------------
+	int taille=Math.min(tabAttaque.size(),tabDefense.size());// on prend la taille la plus courte entre les deux tableaux
 	int i=1;
 	while (i<taille){
-	
+	// on compare les scores et on tue le plus faibles
 		if (tabAttaque.get(i)>tabDefense.get(i)){
 			tuerUnite(terCible,tabDefense.get(i-1));
 			tabDefense.set(i,0);
@@ -461,14 +472,14 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			
 		}
 		i=i+2;
-		System.out.println("Tab Attaque ligne 453");
+		/*System.out.println("Tab Attaque ligne 453");
 		for (int j=0;j<tabAttaque.size();j=j+2){
 			System.out.println(tabAttaque.get(j)+" "+tabAttaque.get(j+1));
 		}
 		System.out.println("Tab def a la ligne 457");
 		for (int y=0;y<tabDefense.size();y=y+2){
 			System.out.println(tabDefense.get(y)+" "+tabDefense.get(y+1));
-		}
+		}*/
 	}
 		// a partir de ce momment il faut compter les zeros pour savoir qui a gagné et agir en csq (enlever les morts)
 		if (terCible.getTerritoryUnits()<=0){
@@ -477,24 +488,27 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			terCible.setnCavalry(0);
 			terCible.setnGuns(0);
 			terCible.setnSoldiers(0);
+			// on ajoute le territoire a la liste des territoires controlés du gagnant et on l'enlève du perdant
+			Player p1=terCible.getPlayerWhoControlls();
 			terCible.setPlayerWhoControlls(terOrigine.getPlayerWhoControlls());
 			Player p=terOrigine.getPlayerWhoControlls();
 			p.controlledTerritories.add(terCible.getTerritoryNumber());
+			p1.controlledTerritories.remove(terCible);
 			// on met les unités qu'il reste sur le nouveau ter
 		
-			System.out.println("on est maintenant au momment de tuer et ajouter des unités");
-			System.out.println("Avant de commencer les manoeuvres il y a"+terCible.getTerritoryUnits()+" unités sur le ter");
+			//System.out.println("on est maintenant au momment de tuer et ajouter des unités");
+			//System.out.println("Avant de commencer les manoeuvres il y a"+terCible.getTerritoryUnits()+" unités sur le ter");
 			for (  i=1;i<tabAttaque.size();i=i+2){
 				//System.out.println("i-1= "+(i-1)+" et tab(i-1)="+tabAttaque.get(i-1));
 				//System.out.println("i= "+i+" et tab(i)="+tabAttaque.get(i));
-				System.out.println("Je traite la "+i+"armée");
+				//System.out.println("Je traite la "+i+"armée");
 					if (tabAttaque.get(i)!=0){
 						if (terOrigine.getTerritoryUnits()>1){
 					ajouterUnite(terCible, tabAttaque.get(i-1));
 					
 					tuerUnite(terOrigine,tabAttaque.get(i-1));
-					System.out.println("j'ajouter un "+tabAttaque.get(i-1)+" sur le territoire conquis");
-					System.out.println("sur le ter cible nb units="+terCible.getTerritoryUnits());
+					//System.out.println("j'ajouter un "+tabAttaque.get(i-1)+" sur le territoire conquis");
+					//System.out.println("sur le ter cible nb units="+terCible.getTerritoryUnits());
 						}
 					
 					
@@ -507,6 +521,7 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 
 
 	public static void tuerUnite(Territory ter,int num){
+		// cette fonction est utilisée pour tuer des unités
 		int i=0;
 		if (num==1){
 			i=ter.getnCavalry();
@@ -522,13 +537,15 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			ter.setnGuns(i-1);
 		}
 		else{
-			System.out.println("ma bite");
+			System.out.println("Erreur");
+			// les types sont forcément 1,2 ou3
+			
 		}
 		System.out.println("un"+num+" a été tué !"+ "du territoire"+ter.getTerritoryNumber());
 	}
 	
 	
-	
+	//ll
 	
 	public static int[] chooseUnit(Territory terOrigin){
 		int nGuns=0;
