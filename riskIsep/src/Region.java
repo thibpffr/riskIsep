@@ -1,6 +1,5 @@
 
 public class Region {
-
 	private int regionNumber;
 	private static int numberOfTerritory;
 	private int[] territoryInRegion;
@@ -40,7 +39,7 @@ public int getRegionNumber() {
 	return regionNumber;
 }
 
-public static int getNumberOfTerritory() {
+public int getNumberOfTerritory() {
 	return numberOfTerritory;
 }
 

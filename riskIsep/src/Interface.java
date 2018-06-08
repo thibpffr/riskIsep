@@ -12,7 +12,11 @@ public class Interface {
 	public static void ecranUnit() {
 	StdDraw.picture(0.5, 0.5, "image/riskUnit.jpg");
 }
-	
+	public void ecranVictoire() {
+		StdDraw.clear();
+		StdDraw.setCanvasSize(1280,439);	
+		StdDraw.picture(0.5,0.5,"image/victory.jpg");
+	}
 	public void ecranCarte(Territory[] territoryList)
 	{
 		
@@ -300,7 +304,7 @@ public class Interface {
 			}
 			else if((sourisX > 0.52 && sourisX < 0.56) && (sourisY > 0.03 && sourisY < 0.16))//Madagascar
 			{
-				return 36;
+				return 37;
 			}
 			else if((sourisX > 0.48 && sourisX < 0.56) && (sourisY > 0.35 && sourisY < 0.55))//Moyen Orient
 			{

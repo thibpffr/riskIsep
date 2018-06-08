@@ -24,12 +24,15 @@ public class Player {
 	
 	
 
-	public static int addRenfort(Player player) {
+	public int addRenfort(Player player) {
 		int numberOfTroup=0;
-		for (int i : player.controlledRegions) {
-			numberOfTroup = numberOfTroup + Region.getNumberOfTerritory()/2;
+		for (int i=0;i<player.getControlledRegions().size();i++) {
+			numberOfTroup=numberOfTroup+(Main1.regionList[player.controlledRegions.get(i)].getNumberOfTerritory()/2);
 		}
-		numberOfTroup = numberOfTroup + player.controlledTerritories.size()/3;
+		/*for (int i : player.controlledRegions) {
+			numberOfTroup = numberOfTroup + Region.getNumberOfTerritory()/2;
+		}*/
+		numberOfTroup = numberOfTroup + (player.getControlledTerritories().size()/3);
 		return numberOfTroup;
 	}
 
