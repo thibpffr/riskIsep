@@ -63,7 +63,7 @@ public boolean missionTerritoriesAndRegions(Missions m,Player p){
 	return false;
 	
 }
-public boolean mission2Armies(Missions m, Player p){
+/*public boolean mission2Armies(Missions m, Player p){
 	int nbTerControlesAvec2Armees=0;
 	ArrayList listeTer=p.getControlledTerritories();
 	Territory ter;
@@ -83,7 +83,7 @@ public boolean mission2Armies(Missions m, Player p){
 	 }
 	 return false;
 }
-
+*/
 
 public static Missions giveAMission(int nbJoueurs,Missions[] tab){
 	int nb=0;

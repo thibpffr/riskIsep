@@ -309,26 +309,32 @@ public class Main1 {
 				terOrigine= interfMap.territoryChoice();
 				terOrigin = territoryList[terOrigine];
 				if (terOrigin.getTerritoryUnits()<=1){//on verifie qu'il puisse attaquer
+					// dans le cas ou il n'y a qu'une seule unité sur le territoire, il est impossible d'attaquer
 					System.out.println("Ce territoire n'a pas assez d'unités pour attaquer");
 				}
 				else if (terOrigin.getPlayerWhoControlls()!=playerTurn) {
+					//il est impossible pour un joueur d'attaquer depuis un territoire qui n'est pas à lui
 					System.out.println("Vous ne pouvez pas attaquer depuis un territoire qui n'est pas à vous");
 				}
 				else{
+					//
 					System.out.println("Vous avez chosi le territoire " +terOrigin.getTerritoryNumber());
 				// le joueur choisit le territoire cible
 					java.lang.Thread.sleep(500);
 					System.out.println("choisissez le Territoire vers lequel vous voulez lancer l'attaque");
 					terCible = interfMap.territoryChoice();
+					
 				
 					terCibl = territoryList[terCible];
 					if (terCibl.getPlayerWhoControlls()==playerTurn){
+						
 						System.out.println("Vous ne pouvez pas attaquer votre propre territoire");
 					}
 					
 					else{
 					System.out.println("Vous avez chosi le territoire " +terCibl.getTerritoryNumber());
 						if (Territory.attack(terOrigin,terCibl)){
+							//la fonction attack renvoie true si la conquete a réussi falsse sinon
 							System.out.println("Territoire conquis");
 							interfMap.ecranCarte(territoryList);
 						}
