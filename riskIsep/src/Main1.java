@@ -100,7 +100,7 @@ public class Main1 {
 	static Territory Oceania33 = new Territory(33, Adj33,0.66,0.72,0.2,0.29);
 	static Territory NewZeland = new Territory(34, Adj34,0.75,0.79,0.26,0.33);
 	static Territory EAustralia = new Territory(35, Adj35,0.79,0.83,0.03,0.2);
-	static Territory WAustralia = new Territory(36, Adj36,0.70,0.075,0.05,0.17);
+	static Territory WAustralia = new Territory(36, Adj36,1.46,0,0.2,0);
 	static Territory Madagascar = new Territory(37, Adj37,0.52,0.56,0.03,0.16);//
 	static Territory SAfrica = new Territory(38, Adj38,0.43,0.49,0.05,0.17);
 	static Territory Congo = new Territory(39, Adj39,0.41,0.49,0.17,0.3);
@@ -178,19 +178,19 @@ public class Main1 {
 		//Definition du nombre de Troupe de depart en fonction du nombre de joueur
 		for (int i =0; i<tableauJoueurs.size();i++) {
 			if (tableauJoueurs.size()==2) {
-				troupDepart=40;
+				troupDepart=19;
 			}
 			else if (tableauJoueurs.size()==3) {
-				troupDepart=35;
+				troupDepart=21;
 			}
 			else if (tableauJoueurs.size()==4) {
-				troupDepart=30;
+				troupDepart=30-playerTurn.controlledTerritories.size();
 			}
 			else if (tableauJoueurs.size()==5) {
-				troupDepart=25;
+				troupDepart=25-playerTurn.controlledTerritories.size();
 			}
 			else {
-				troupDepart=20;
+				troupDepart=20-playerTurn.controlledTerritories.size();
 			}
 			
 		}
@@ -244,7 +244,7 @@ public class Main1 {
 				//System.out.println("à la ligne "+215+" choix="+choix);
 				
 				java.lang.Thread.sleep(300);
-				//interfMap.positionSouris();
+				interfMap.positionSouris();
 				System.out.println("Joueur "+(player+1)+" Que voulez vous faire ?");
 				choix = interfMap.actionChoice(); // on choisit l'action : attaquer/deplacer
 				System.out.println("à la ligne "+220+" choix="+choix);

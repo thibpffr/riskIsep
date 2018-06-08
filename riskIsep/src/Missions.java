@@ -74,7 +74,7 @@ public boolean missionTerritoriesAndRegions(Missions m,Player p){
 		 unites=ter.getnCavalry()+ter.getnSoldiers()+ter.getnGuns();
 		 if (unites>2){
 			 nbTerControlesAvec2Armees++;
-			 
+			 kkk
 		 }
 	 }
 	 if (nbTerControlesAvec2Armees>18){
