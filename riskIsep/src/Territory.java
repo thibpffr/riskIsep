@@ -545,7 +545,7 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 	}
 	
 	
-	
+	//ll
 	
 	public static int[] chooseUnit(Territory terOrigin){
 		int nGuns=0;
