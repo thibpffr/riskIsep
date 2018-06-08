@@ -25,7 +25,7 @@ public static boolean isMissionSuceeded(Player p){
 	ArrayList<Integer> ter = new ArrayList<Integer>(); 
 	ter= p.getControlledTerritories();
 	Missions m=p.getPlayerMission();
-	System.out.println("Longueur liste joueur"+ter.size());
+	//System.out.println("Longueur liste joueur"+ter.size());
 	if (ter.size()>=m.getNbTerritoriesControlled()){
 		return true;
 	}

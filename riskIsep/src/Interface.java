@@ -47,6 +47,7 @@ public class Interface {
 			StdDraw.filledCircle((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,0.03);
 			StdDraw.setPenColor(StdDraw.WHITE);
 			Font font = new Font("Arial", Font.BOLD, 10);
+			
 			StdDraw.setFont(font);
 			StdDraw.text((territoryList[i].getxMin()+territoryList[i].getxMax())*0.5,(territoryList[i].getyMin()+territoryList[i].getyMax())*0.5,territoryList[i].getnSoldiers()+"s,"+territoryList[i].getnCavalry()+"c,"+territoryList[i].getnGuns()+"g");
 			StdDraw.setPenColor(StdDraw.BLACK);
@@ -61,62 +62,10 @@ public class Interface {
 		}
 	}
 	
-	/*public static void consoleVirt(Interface interfMap,Territory[] territoryList, String k){
-		//StdDraw.enableDoubleBuffering();
-		interfMap.ecranCarte(territoryList);
-		StdDraw.text(0.5,0.9,k);
-	}
-	*/
+					
+		
 	
-	/*public void ecranNbJoueurs(){
-	StdDraw.clear();
-	StdDraw.setCanvasSize(500,500);
-	//lignes horizontale
-	StdDraw.line(0,0.33,1,0.33);
-	StdDraw.line(0,0.66,1,0.66);
-	// ligne verticale
-	StdDraw.line(0.5,0,0.5,1);
-
-	// texte 
-	StdDraw.text(0.25, 0.9,"Choisissez le nombre de joueurs");
-	// nb joueurs
-	StdDraw.text(0.75, 0.8,"2");
-	StdDraw.text(0.25, 0.5,"3");
-	StdDraw.text(0.75, 0.5,"4");
-	StdDraw.text(0.25, 0.2,"5");
-	StdDraw.text(0.75, 0.2,"6");
-
-	}*/
-	
-	/*public static int posThib(){
-		double sourisX, sourisY;
-		while(true){
-		if(StdDraw.mousePressed()){
-			//StdDraw.text(0.5,0.5,"x= "+StdDraw.mouseX() + " y= "+StdDraw.mouseY());
-			sourisX = StdDraw.mouseX();
-			sourisY = StdDraw.mouseY();
-			//System.out.println("x="+sourisX+" y="+sourisY);
-			if (sourisX<0.5){
-				if (sourisY<0.33)
-					return 5;
-				else if (sourisY<0.66)
-					return 3;
-				
-			}
-			else{
-				if (sourisY<0.33)
-					return 6;
-				else if (sourisY<0.66)
-					return 4;
-				else
-					return 2;
-				
-			}
-			
-		}
-
-		}
-		}*/
+		
 	
 	
 	public void positionSouris() {

@@ -493,7 +493,14 @@ public static boolean attack(Territory terOrigine,Territory terCible){
 			terCible.setPlayerWhoControlls(terOrigine.getPlayerWhoControlls());
 			Player p=terOrigine.getPlayerWhoControlls();
 			p.controlledTerritories.add(terCible.getTerritoryNumber());
-			p1.controlledTerritories.remove(terCible);
+			ArrayList<Integer> controlledTerritories = new ArrayList<Integer>();
+			controlledTerritories=p1.getControlledTerritories();
+			for (int u=0;u<p1.getControlledTerritories().size();u++) {
+				if (controlledTerritories.get(u)==terCible.getTerritoryNumber()) {
+					p1.getControlledTerritories().remove(u);
+				}
+			}
+			//p1.getControlledTerritories().remove(terCible);
 			// on met les unités qu'il reste sur le nouveau ter
 		
 			//System.out.println("on est maintenant au momment de tuer et ajouter des unités");

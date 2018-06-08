@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -132,6 +133,8 @@ public class Main1 {
 		int nGuns=0;
 		int nCavalry=0;
 		int nSoldiers=0;
+		// font
+		Font font2=new Font("Arial",Font.BOLD,20);
 		
 		//---- 1ere boite de dialogue  demander de rentrer le nombre de joueurs qui jouent
 		Missions mission1=new Missions();
@@ -156,9 +159,9 @@ public class Main1 {
 			territoryList[i].setPlayerWhoControlls(tableauJoueurs.get(j)); //On affecte au territoire le joueur qui le contrôle
 			tableauJoueurs.get(j).controlledTerritories.add(territoryList[i].getTerritoryNumber());//on rajoute le territoire à la liste des territoires controllés par le joueur.
 			territoryList[i].setnSoldiers(1); //on pose un soldat automatiquement sur le territoire
-			System.out.println("Le territoire "+territoryList[i].getTerritoryNumber()+" a ete associé au joueur"+tableauJoueurs.get(j).getPlayerNumber());
-			System.out.println("size joueur "+1+"="+tableauJoueurs.get(0).controlledTerritories.size());
-			System.out.println("size joueur "+2+"="+tableauJoueurs.get(1).controlledTerritories.size());
+			//System.out.println("Le territoire "+territoryList[i].getTerritoryNumber()+" a ete associé au joueur"+tableauJoueurs.get(j).getPlayerNumber());
+			//System.out.println("size joueur "+1+"="+tableauJoueurs.get(0).controlledTerritories.size());
+			//System.out.println("size joueur "+2+"="+tableauJoueurs.get(1).controlledTerritories.size());
 			j++;
 			if (j>=nbJoueurs) {
 				j=0;
@@ -202,7 +205,10 @@ public class Main1 {
 				numberOfTroup=troupDepart;	
 			//Interface.consoleVirt( interfMap, territoryList,"c'est le joueur"+i);
 			while(numberOfTroup>0) {
-				System.out.println("Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
+				StdDraw.clear();
+				interfMap.ecranCarte(territoryList);
+				StdDraw.setFont(font2);
+				StdDraw.text(0.5,0.9,"Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
 				//On choisit le territoire où l'on place 
 				terCible= interfMap.territoryChoice();
 				terCibl=territoryList[terCible];
@@ -217,17 +223,25 @@ public class Main1 {
 		}
 		// ####### La partie commence pour de vrai#######
 		for(int player=0;player<tableauJoueurs.size();player++) { // Tour du joueur
+			
 			choix=-1;//Choix par défaut pour pouvoir choisir l'action par la suite
 			playerTurn=tableauJoueurs.get(player); //joueur dont c'est le tour
 			int nb=(playerTurn.getPlayerNumber()+1);
-			System.out.println("c'est le tour du Joueur "+nb);
+			StdDraw.clear();
+			StdDraw.setFont(font2);
+			interfMap.ecranCarte(territoryList);
+			StdDraw.setFont(font2);StdDraw.text(0.5, 0.9, "c'est le tour du Joueur "+nb);
+			
 		//########On pose les renforts ########
-			if (tour1>=tableauJoueurs.size()) { //on verifie que ce ne soit pas le premier tour pour ne pas avoir de renforts dès le début
+			if (tour1>tableauJoueurs.size()) { //on verifie que ce ne soit pas le premier tour pour ne pas avoir de renforts dès le début
 				troupUsed=0;
 				numberOfTroup= playerTurn.addRenfort(playerTurn);//fonction qui calcul le nombre de renfort
 				//on les pose
 				while(numberOfTroup>0) {
-					System.out.println("Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
+					StdDraw.clear();
+					StdDraw.setFont(font2);
+					interfMap.ecranCarte(territoryList);
+					StdDraw.setFont(font2);StdDraw.text(0.5, 0.9, "Joueur "+(playerTurn.getPlayerNumber()+1)+", Choisissez ou placer vos troupes !");
 					terCible= interfMap.territoryChoice();
 					terCibl=territoryList[terCible];
 					System.out.println("Vous avez choisi le territoire "+terCibl.getTerritoryNumber());
@@ -244,10 +258,14 @@ public class Main1 {
 				//System.out.println("à la ligne "+215+" choix="+choix);
 				
 				java.lang.Thread.sleep(300);
-				interfMap.positionSouris();
-				System.out.println("Joueur "+(player+1)+" Que voulez vous faire ?");
+				//interfMap.positionSouris();
+				StdDraw.clear();
+				
+				interfMap.ecranCarte(territoryList);
+				StdDraw.setFont(font2);
+				StdDraw.setFont(font2);StdDraw.text(0.5, 0.9, "Joueur "+(player+1)+" Que voulez vous faire ?");
 				choix = interfMap.actionChoice(); // on choisit l'action : attaquer/deplacer
-				System.out.println("à la ligne "+220+" choix="+choix);
+				//System.out.println("à la ligne "+220+" choix="+choix);
 				if (choix==-1) {
 					// dans le cas ou on ne clique pas sur une action
 					while (choix==-1) {
@@ -261,18 +279,29 @@ public class Main1 {
 					
 			
 				// le joueur choisit le territoire origine depuis lequel il veut déplacer des armées
-					System.out.println("choix = deplacement");
+					//System.out.println("choix = deplacement");
 					java.lang.Thread. sleep(300);
-					System.out.println("choisir un territoire");
+					//System.out.println("choisir un territoire");
+					StdDraw.clear();
+					interfMap.ecranCarte(territoryList);
+					
+
+					StdDraw.setFont(font2);StdDraw.text(0.5, 0.9,"Choisir le territoire origine");
 					terOrigine= interfMap.territoryChoice(); // On choisit le premier territoire
 					terOrigin=territoryList[terOrigine];
-					System.out.println("territoire "+terOrigin.getTerritoryNumber());
-					System.out.println("le nombre de soldats sur le ter est "+terOrigin.getnSoldiers());
+					//System.out.println("territoire "+terOrigin.getTerritoryNumber());
+					//System.out.println("le nombre de soldats sur le ter est "+terOrigin.getnSoldiers());
 					
-					System.out.println("choisir un territoire");
+				//	System.out.println("choisir un territoire");
 						
 					// le joueur choisit le territoire cible
 					if (terOrigin.getPlayerWhoControlls()==playerTurn) { //On verifie que le territoire appartient au joueur
+						
+						StdDraw.clear();
+						interfMap.ecranCarte(territoryList);
+						
+
+						StdDraw.setFont(font2);StdDraw.text(0.5, 0.9,"choisir un territoire cible");
 						terCible = interfMap.territoryChoice(); //On choisit le 2eme territoire
 						terCibl=territoryList[terCible];
 						System.out.println("territoire "+terCibl.getTerritoryNumber());
@@ -287,7 +316,11 @@ public class Main1 {
 						
 						if(Territory.moveArmy(terOrigin,terCibl,nGuns,nCavalry,nSoldiers))//On verifie que le joueur puisse déplacer des troupes
 						{
-							System.out.println("Le déplacement a été effectué");
+							StdDraw.clear();
+							
+							interfMap.ecranCarte(territoryList);
+							StdDraw.setFont(font2);
+							StdDraw.setFont(font2);StdDraw.text(0.5, 0.9, "Le déplacement a été effectué");
 							interfMap.ecranCarte(territoryList);
 						}	
 						
@@ -305,43 +338,79 @@ public class Main1 {
 				if (choix==1){
 				// on est dans le cas ou le joueur choisit d'attaquer un territoire
 				// le joueur choisit le territoire origine depuis lequel il veut attaquer
-				System.out.println("choisissez le Territoire depuis lequel vous voulez lancer l'attaque");
+					StdDraw.clear();
+					
+					StdDraw.setFont(font2);
+					
+
+					interfMap.ecranCarte(territoryList);
+					StdDraw.setFont(font2);StdDraw.text(0.5, 0.9,"choisissez le Territoire depuis lequel vous voulez lancer l'attaque");
 				terOrigine= interfMap.territoryChoice();
 				terOrigin = territoryList[terOrigine];
 				if (terOrigin.getTerritoryUnits()<=1){//on verifie qu'il puisse attaquer
 					// dans le cas ou il n'y a qu'une seule unité sur le territoire, il est impossible d'attaquer
-					System.out.println("Ce territoire n'a pas assez d'unités pour attaquer");
+					StdDraw.clear();
+					
+					StdDraw.setFont(font2);
+					
+
+					interfMap.ecranCarte(territoryList);
+					StdDraw.setFont(font2);StdDraw.text(0.5, 0.9," Ce territoire n'a pas assez d'unités pour attaquer");
+					//System.out.println("Ce territoire n'a pas assez d'unités pour attaquer");
 				}
 				else if (terOrigin.getPlayerWhoControlls()!=playerTurn) {
 					//il est impossible pour un joueur d'attaquer depuis un territoire qui n'est pas à lui
-					System.out.println("Vous ne pouvez pas attaquer depuis un territoire qui n'est pas à vous");
+					StdDraw.clear();
+					
+					StdDraw.setFont(font2);
+					
+
+					interfMap.ecranCarte(territoryList);
+					StdDraw.setFont(font2);StdDraw.text(0.5, 0.9,"Vous ne pouvez pas attaquer depuis un territoire qui n'est pas à vous");
 				}
 				else{
 					//
 					System.out.println("Vous avez chosi le territoire " +terOrigin.getTerritoryNumber());
 				// le joueur choisit le territoire cible
 					java.lang.Thread.sleep(500);
-					System.out.println("choisissez le Territoire vers lequel vous voulez lancer l'attaque");
+					StdDraw.clear();
+					
+					StdDraw.setFont(font2);
+					
+
+					interfMap.ecranCarte(territoryList);
+					StdDraw.setFont(font2);StdDraw.text(0.5, 0.9,"choisissez le Territoire vers lequel vous voulez lancer l'attaque");
 					terCible = interfMap.territoryChoice();
 					
 				
 					terCibl = territoryList[terCible];
 					if (terCibl.getPlayerWhoControlls()==playerTurn){
 						
-						System.out.println("Vous ne pouvez pas attaquer votre propre territoire");
+						StdDraw.clear();
+						interfMap.ecranCarte(territoryList);
+						
+						StdDraw.setFont(font2);
+						StdDraw.setFont(font2);StdDraw.text(0.5, 0.9,"Vous ne pouvez pas attaquer votre propre territoire");
 					}
 					
 					else{
 					System.out.println("Vous avez chosi le territoire " +terCibl.getTerritoryNumber());
 						if (Territory.attack(terOrigin,terCibl)){
 							//la fonction attack renvoie true si la conquete a réussi falsse sinon
-							System.out.println("Territoire conquis");
+							StdDraw.clear();
 							interfMap.ecranCarte(territoryList);
+							
+
+							StdDraw.setFont(font2);StdDraw.text(0.5, 0.9,"Territoire conquis");
+							
 						}
 					
 						else{
-							System.out.println("Echec de la conquete");
+							StdDraw.clear();
+							StdDraw.setFont(font2);
 							interfMap.ecranCarte(territoryList);
+							StdDraw.setFont(font2);StdDraw.text(0.5, 0.9, "Echec de la conquete");
+							
 						}
 					//interfMap.ecranCarte(territoryList);
 					}
@@ -354,11 +423,13 @@ public class Main1 {
 			if(player==tableauJoueurs.size()-1) {//Une fois que le dernier joueur a joué on retourne au premier
 				player=-1;
 			}
+			//System.out.println(playerTurn.controlledTerritories.size());
 			if (Missions.isMissionSuceeded(playerTurn)){
 				// ecran de victoire sa mere
 				System.out.println("vous avez gagné, le monde est à vous");
 				interfVic = new Interface(800,550);
 				interfVic.ecranVictoire();
+				
 			}
 			tour1=tour1+1;//variable qui sert à controller qu'il n'y ait pas de renfort au premier tour
 		}
